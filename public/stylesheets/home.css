@@ -1,0 +1,27 @@
+
+.login-container,
+.register-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.home-img-container,
+.home-text {
+  display: flex;
+  height: 80vh;
+  align-items: center;
+  margin: auto;
+}
+
+.home-img {
+  width: 80%;
+  margin: auto;
+}
+
+.home-title {
+  font-size: 45px;
+}
+
+.home-subtitle {
+  font-size: 25px;
+}

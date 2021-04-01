@@ -1,0 +1,56 @@
+.answer:hover {
+  background-color: #51f79b;
+}
+
+.choices div {
+  margin: 10px;
+}
+
+.answer {
+  padding: 5px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.questionContainer{
+    margin: auto;
+}
+
+.options{
+  margin: 10px;
+  white-space: normal !important;
+}
+
+.card{
+  border-radius: 10px;
+  border-style: solid;
+}
+
+.option-item{
+  white-space: normal !important;
+
+}
+
+.exam-title{
+  border-top:chocolate 8px solid;
+}
+.submit-btn{
+  background-color:chocolate;
+  color: white;
+  margin-left: 26%;
+  margin-top: 15px;
+}
+
+
+label {
+  position:relative;
+  padding-left:2.5ch;
+  display: block;
+  margin-bottom: 5px;
+}
+
+label > [type=radio] {
+  position: absolute;
+  left: 0;
+}

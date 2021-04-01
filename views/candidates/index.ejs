@@ -1,0 +1,23 @@
+<% layout('layouts/boilerplate') %> 
+<link rel="stylesheet" href="/stylesheets/instructions.css">
+
+<div class=" container  align-items-center mt-3">
+
+  <h1 class="text-center">All Exams </h1>
+    <hr />
+
+  <div class="row">
+
+    <% for(exam of exams) { %> 
+      <div class="col-sm-6">
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= exam.name.toUpperCase() %></h5>
+            <p class="card-text">Created on <%= exam.date_created %> by <strong><%= exam.author.username %></strong></p>
+            <a href="/candidate/exam/<%=exam._id %>/instructions" class="btn btn-primary">Take This Exam <i class="far fa-angle-double-right"></i></a>
+          </div>
+        </div>
+      </div>
+    <% } %> 
+  </div>
+  </div>

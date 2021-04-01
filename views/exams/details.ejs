@@ -1,0 +1,333 @@
+<% layout('layouts/boilerplate') %> 
+<link href="/stylesheets/styles.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">Loctech Scholarship</a>
+            <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+            <!-- Navbar Search-->
+            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <!-- Navbar-->
+            <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="#">Activity Log</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/staff/logout">Logout <i class="fad fa-sign-out-alt"></i></a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <a class="nav-link" href="/staff/dashboard">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Tasks</div>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                People
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="/staff/dashboard/candidate/new">Add Candidate</a>
+                                    <a class="nav-link" href="/staff/dashboard/new-staff">Manage Staff</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                Exams & Results
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav" id="sidenavAccordionPages">
+                                    <a class="nav-link" href="/staff/dashboard/exams">
+                                        Manage Exams
+                                    </a>
+                                    <a class="nav-link" href="/staff/dashboard/exams/results">
+                                        View Results
+                                    </a>
+                                </nav>
+                            </div>
+                            <div class="sb-sidenav-menu-heading">Quick Links</div>
+                            <a class="nav-link" href="/staff/dashboard/candidate/new">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-plus"></i></div>
+                                New Candidate
+                            </a>
+                            <a class="nav-link" href="/staff/dashboard/exams">
+                                <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
+                                Manage Exams
+                            </a>
+                            <a class="nav-link" href="/staff/dashboard/exams/results">
+                                <div class="sb-nav-link-icon"><i class="fas fa-poll"></i></div>
+                                View Results
+                            </a>
+                            <a class="nav-link" href="/staff/logout">
+                                <div class="sb-nav-link-icon"><i class="fad fa-sign-out-alt"></i></div>
+                                Logout
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        <%= currentStaff.username %> 
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid">
+
+                        <!-- Create Exam Modal Button-->
+                <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#examCreateModal">
+                    Create Question
+                    </button>
+                    <!-- Create Exam Modal Button-->
+    
+                    <!-- Create Exam Modal -->
+                    <div class="modal fade" id="examCreateModal" tabindex="-1" aria-labelledby="examCreateModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="examCreateModalLabel">Create Question</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+    
+                                <!-- Create Question Form -->
+                            <form action="/staff/dashboard/exams/<%= exam._id %>/question" method="POST" id="question-create">
+                                <div class="modal-body p-4">
+                                   <input type="text" name="name" placeholder="Question" class="form-control my-2">
+                                   <input type="text" name="A" placeholder="Option A" class="form-control my-2">
+                                   <input type="text" name="B" placeholder="Option B" class="form-control my-2">
+                                   <input type="text" name="C" placeholder="Option C" class="form-control my-2">
+                                   <input type="text" name="D" placeholder="Option D" class="form-control my-2">
+                                   <select name="correctAnswer" class="form-control">
+                                        <option>---- Correct Answer ----</option>
+                                        <option value="A">Option A</option>
+                                        <option value="B">Option B</option>
+                                        <option value="C">Option C</option>
+                                        <option value="D">Option D</option>
+                                   </select>
+                                   <input type="hidden" name="examId" value="<%= exam._id %>">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Create</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                </div>
+                            </form>
+                            <!-- Create Question Form -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Create Exam Modal -->
+                            
+                        <h1 class="mt-4">ALL QUESTIONS</h1>
+                        
+                        <div class="row top-cards">
+                            <div class="col-xl-4 col-md-6">
+                                <div class="card bg-primary text-white mb-4">
+                                    <div class="card-body"><%= exam.name.toUpperCase() %></div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <p>Created on <%= exam.date_created %> by <strong><%= exam.author.username %></strong> </p>
+                                    </div>
+                                </div>
+                            </div>
+                          
+                            <div class="col-xl-4 col-md-6">
+                                <div class="card bg-success text-white mb-4">
+                                    <div class="card-body">NO. OF QUESTIONS</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <%= exam.questions.length %>
+                                        <div class="small text-white"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="card bg-danger text-white mb-4">
+                                    <div class="card-body">STATUS</div>
+                                    <div class="card-footer d-flex align-items-center justify-content-between">
+                                        <%= exam.status %>
+                                        <div class="small text-white"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table mr-1"></i>
+                                All Questions
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Question</th>
+                                                <th scope="col">Date Created</th>
+                                                <th scope="col">Option A</th>
+                                                <th scope="col">Option B</th>
+                                                <th scope="col">Option C</th>
+                                                <th scope="col">Option D</th>
+                                                <th scope="col">Correct Answer</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                              <th scope="col">Question</th>
+                                              <th scope="col">Date Created</th>
+                                              <th scope="col">Option A</th>
+                                              <th scope="col">Option B</th>
+                                              <th scope="col">Option C</th>
+                                              <th scope="col">Option D</th>
+                                              <th scope="col">Correct Answer</th>
+                                              <th scope="col"></th>
+                                              <th scope="col"></th>
+
+                                                
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <% for(let question of exam.questions){ %> 
+                                                <tr>
+                                                    <td scope="row"><%= question.name %> </td>
+                                                    <td><%= question.date_created %> </td>
+                                                    <td><%= question.options.A %> </td>
+                                                    <td><%= question.options.B %> </td>
+                                                    <td><%= question.options.C %> </td>
+                                                    <td><%= question.options.D %> </td>
+                                                    <td><%= question.correctAnswer %> </td>
+                                                    
+                                                    <!-- Edit Modal Candidate -->
+                                                    <td class="text-center">
+                                                      <!-- Edit Question Modal Button-->
+                                    <a href="" data-bs-toggle="modal" data-bs-target="#editQuestion<%= question._id %>"><i class="fas fa-pen text-warning"></i></a>
+                                    <!-- Edit Question Modal Button-->
+
+                                    <!-- Edit Question Modal -->
+                                    <div class="modal fade" id="editQuestion<%= question._id %>" tabindex="-1" aria-labelledby="editQuestion<%= question._id %>Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="editQuestion<%= question._id %>Label">Edit Question</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+
+                                                <!-- Edit Question Form -->
+                                                <form action="/staff/dashboard/exams/<%= exam._id %>/question/<%= question._id %>?_method=PUT" method="POST" class="question-edit">
+                                                    <div class="modal-body p-4">
+                                                        <input type="text" name="name" placeholder="Question" class="form-control my-2" value="<%= question.name %>">
+                                                        <input type="text" name="A" placeholder="Option A" class="form-control my-2" value="<%= question.options.A %>">
+                                                        <input type="text" name="B" placeholder="Option B" class="form-control my-2" value="<%= question.options.B %>">
+                                                        <input type="text" name="C" placeholder="Option C" class="form-control my-2" value="<%= question.options.C %>">
+                                                        <input type="text" name="D" placeholder="Option D" class="form-control my-2" value="<%= question.options.D %>">
+                                                        <select name="correctAnswer" class="form-control">
+                                                            <% for(let option of options) { %>
+                                                                <option value="<%=option.slice(-1)%>" <%= question.correctAnswer === option.slice(-1) ? "selected" : "" %> ><%=option%></option>                                                         
+                                                            <% } %>
+                                                        </select>
+                                                        <input type="hidden" name="examId" value="<%= exam._id %>">
+                                                        <input type="hidden" name="questionId" value="<%= question._id %>">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Save</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </form>
+                                                <!-- Edit Question Form -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Edit Question Modal -->
+                                                    </td>
+                                                    <!-- Edit Modal Candidate -->
+
+                                                    <!-- Delete Modal candidate -->
+                                                    <td class="text-center">
+                                                        <!-- Delete Question Modal Button-->
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#deleteQuestion<%= question._id %>"><i class="far fa-trash-alt text-danger"></i></a>
+                                    <!-- Delete Question Modal Button-->
+
+                                    <!-- Delete Question Modal -->
+                                    <div class="modal fade" id="deleteQuestion<%= question._id %>" tabindex="-1" aria-labelledby="deleteQuestion<%= question._id %>Label" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteQuestion<%= question._id %>Label">Delete Question</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+
+                                                <!-- Delete Question Form -->
+                                                <form action="/staff/dashboard/exams/<%= exam._id %>/question/<%= question._id %>?_method=DELETE" method="POST" class="question-delete">
+                                                    <div class="modal-body p-4">
+                                                        <p>Are you sure you want to delete "<strong><%= question.name %></strong>"?</p>
+                                                        <input type="hidden" name="examId" value="<%= exam._id %>">
+                                                        <input type="hidden" name="questionId" value="<%= question._id %>">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Delete</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </form>
+                                                <!-- Delete Question Form -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Delete Question Modal -->
+                                                    </td>
+
+
+
+                                                    <!-- Delete Modal Candidate -->
+
+                                                </tr>
+                                            <% } %>                                     
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Loctech Online Exam Software 2021</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/javascripts/scripts.js"></script>
+        <script src="/javascripts/candidate.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="/assets/demo/chart-area-demo.js"></script>
+        <script src="/assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="/assets/demo/datatables-demo.js"></script>

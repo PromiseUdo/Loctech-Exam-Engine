@@ -1,0 +1,471 @@
+
+input, button {
+	font: 400 14px/1.6 'Raleway', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+button {
+	cursor: pointer;
+}
+
+.or {
+	height: 1px;
+	width: 100%;
+	background-color: #cdcdd2;
+	position: relative;
+	margin: 40px 0;
+}
+
+	.or:after {
+		display: block;
+		content: "OR";
+		position: absolute;
+		top: -9px;
+		font-size: 12px;
+		font-weight: 600;
+		color: #6f6f7f;
+		background-color: #f7f7f7;
+		padding: 0 30px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: 'Merriweather', serif;
+	color: #262635;
+}
+
+.container {
+	max-width: 970px;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+header {
+	background: #fbfbfb url('https://www.mark-eriksson.com/work/designs/ThankYou/img/header-strip.jpg') repeat-x bottom left;
+	padding: 20px 0 75px;
+}
+
+	header nav {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+		header nav ul {
+			list-style: none;
+		}
+
+			header nav ul li {
+				display: inline-block;
+			}
+
+				header nav ul li:first-child { margin-left: 0; }
+				header nav ul li:last-child { margin-right: 0; }
+
+				header nav ul li a {
+					color: #91919a;
+					font-size: 11px;
+					text-transform: uppercase;
+					text-decoration: none;
+					display: block;
+					padding: 10px 20px;
+				}
+
+					header nav ul li a .fa {
+						font-size: 18px;
+						font-weight: 300;
+					}
+
+main {
+	padding: 60px 0;
+}
+
+	main .thankyou {
+		margin-bottom: 35px;
+		text-align: center;
+	}
+
+		main .thankyou h1 {
+			font:'Merriweather', serif;
+			margin-bottom: 20px;
+		}
+
+		main .thankyou p {
+			font-size: 15px;
+		}
+
+	main .row {
+		display: flex;
+		justify-content: space-between;
+	}
+
+		main .row .details {
+			max-width: 55%;
+		}
+
+		main .row .share {
+			max-width: 35%;
+		}
+
+	main h3 {
+		font-size: 24px;
+		margin-bottom: 8px;
+	}
+
+	main p {
+		line-height: 1.7;
+		margin: 15px 0;
+		font-size: 15px;
+	}
+
+	main p.smallprint {
+		font-style: italic;
+		font-size: 11px;
+	}
+
+	main .content-box {
+		border: 1px solid #cdcdd2;
+		padding: 20px;
+		font-size: 15px;
+		border-radius: 4px;
+		margin: 25px 0;
+	}
+
+		main .content-box .content-box-title {
+			font-weight: 600;
+			font-family: 'Raleway';
+			font-size: 16px;
+			margin-bottom: 4px;
+		}
+
+		main .content-box address {
+			font-style: normal;
+		}
+
+		main .content-box .payment-card {
+			padding-left: 50px;
+		}
+
+			main .content-box .payment-card.amex {
+				background: url('https://www.mark-eriksson.com/work/designs/ThankYou/img/amex.jpg') no-repeat;
+			}
+
+	main dl {
+		font-size: 15px;
+	}
+
+		main dl dt {
+			float: left;
+		}
+
+			main dl dt {
+				clear: both;
+			}
+
+		main dl dd {
+			float: right;
+			margin-bottom: 6px;
+		}
+
+		main dl dt.big, main dl dd.big {
+			font-size: 19px;
+			font-weight: 600;
+		}
+
+	main .share p {
+		font-size: 13px;
+	}
+
+	main .share .email {
+		margin: 10px 0;
+	}
+
+		main .share .email input, main .share .email button {
+			display: block;
+			width: 100%;
+			padding: 15px 0;
+		}
+
+		main .share .email input {
+			background-color: transparent;
+			border: 1px solid #cdcdd2;
+			padding-left: 16px;
+			padding-right: 16px;
+			font-size: 15px;
+			margin-bottom: 20px;
+			border-radius: 4px;
+		}
+
+		main .share .email .bigbutton {
+			text-transform: uppercase;
+			background-color: #fd6d4d;
+		}
+
+	main .share .bigbutton {
+		font-weight: 600;
+		color: #fff;
+		font-size: 13px;
+		text-align: center;
+		border-radius: 4px;
+		border: 0;
+		padding: 15px 0;
+		width: 100%;
+		display: block;
+	}
+
+	main .share .bigbutton.social {
+		background-color: #3d3d5e;
+		font-size: 15px;
+		position: relative;
+		margin: 20px 0;
+	}
+
+	main .share .bigbutton.social i {
+		font-size: 26px;
+		position: absolute;
+		top: 12px;
+		left: 20%;
+		margin-right: 8px
+	}
+
+	main .share .mylink {
+		margin-top: 15px;
+		display: flex;
+	}
+
+		main .share .mylink input,
+		main .share .mylink button {
+			padding: 18px 0;
+			border-radius: 4px;
+			border: 0;
+			float: left;
+		}
+
+		main .share .mylink input {
+			border: 1px dashed #cdcdd2;
+			background-color: transparent;
+			width: 70%;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			padding-left: 20px;
+			padding-right: 20px;
+			border-right: none;
+		}
+
+		main .share .mylink button {
+			width: 30%;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			border: 1px solid #cdcdd2;
+			background-color: #cdcdd2;
+			color: #fff;
+			text-transform: uppercase;
+			font-weight: 600;
+			font-size: 13px
+		}
+
+footer {
+	background-color: #262635;
+	color: #fff;
+	padding: 30px 0;
+	font-size: 13px;
+}
+
+	footer .footer-block {
+		display: flex;
+		justify-content: space-between;
+	}
+
+		footer .footer-block .logo img {
+			margin-bottom: 10px;
+		}
+
+		footer .footer-block .logo a {
+			color: #675d9d;
+			text-decoration: none;
+		}
+
+		footer .footer-block .links {
+			display: flex;
+			width: 50%;
+			justify-content: space-between;
+		}
+
+			footer .footer-block .links .link-block h5 {
+				color: #fff;
+				text-transform: uppercase;
+				font-family: 'Raleway', sans-serif;
+				font-weight: 700;
+			}
+
+			footer .footer-block .links .link-block ul {
+				list-style: none;
+			}
+
+				footer .footer-block .links .link-block ul li a {
+					color: #fff;
+					font-size: 11px;
+					text-decoration: none;
+					display: block;
+					margin: 8px 0;
+				}
+
+					footer .footer-block .links .link-block ul li a:hover {
+						text-decoration: underline;
+					}
+
+	footer hr {
+		display: block;
+		height: 2px;
+		border: 0;
+		width: 100%;
+		background-color: #373744;
+		margin: 35px 0;
+	}
+
+	footer .copyright {
+		display: flex;
+		justify-content: space-between;
+		font-size: 10px;
+		color: #646474;
+	}
+
+		footer .copyright .rights ul {
+			display: inline-block;
+			margin-left: 10px;
+			list-style: none;
+		}
+
+			footer .copyright .rights ul li {
+				display: inline-block;
+				margin: 0 15px;
+			}
+
+				footer .copyright .rights ul li:first-child { margin-left: 0; }
+				footer .copyright .rights ul li:last-child { margin-right: 0; }
+
+				footer .copyright .rights ul li a {
+					text-decoration: none;
+					color: #646474;
+				}
+
+					footer .copyright .rights ul li a:hover {
+						text-decoration: underline;
+					}
+
+	footer .copyright .social-links {
+		text-align: right;
+	}
+
+		footer .copyright .social-links ul {
+			list-style: none;
+			position: relative;
+			top: -7px;
+		}
+
+			footer .copyright .social-links ul li {
+				display: inline-block;
+				font-size: 14px;
+				background-color: #fff;
+				width: 25px;
+				height: 25px;
+				text-align: center;
+				padding-top: 2px;
+				margin: 0 6px;
+				border-radius: 50%;
+			}
+
+				footer .copyright .social-links ul li a {
+					color: #262635;
+				}
+
+@media only screen and (max-width: 830px) {
+	footer .copyright .rights ul {
+		margin-left: 0;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	main .row .details, main .row .share { width: 100%; }
+	
+	footer .footer-block,
+	footer .copyright,
+	footer .copyright .social-links {
+		text-align: center;
+		display: block;
+	}
+	
+	footer .copyright .rights ul {
+		margin-top: 15px;
+	}
+	
+	footer .copyright .social-links ul {
+		top: auto;
+		position: static;
+		margin-top: 15px;
+	}
+	
+	footer .footer-block .links {
+		width: 100%;
+		margin-top: 35px;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+	main .row {
+		display: block;
+	}
+	
+	main .row .details, main .row .share {
+		max-width: 100%;
+	}
+	
+	main .row .share {
+		margin-top: 80px;
+	}
+}
+
+@media only screen and (max-width: 655px) {
+	header nav {
+		text-align: center;
+		display: block;
+	}
+	
+	header nav ul {
+		margin-top: 10px;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	main .thankyou h1 {
+		font-size: 36px;
+		line-height: 1.4;
+	}
+}
+
+@media only screen and (max-width: 420px) {
+	main .thankyou h1 {
+		font-size: 32px;
+	}
+}
+
+*, *:before, *:after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	outline: none;
+	-webkit-font-smoothing: antialiased;
+}
+
+.cf:before, .cf:after {
+	display: table;
+	content: " ";
+	font-size: 0;
+}
+
+.cf:after {
+	clear: both;
+}
+
+.left { float: left; }
+.right { float: right; }

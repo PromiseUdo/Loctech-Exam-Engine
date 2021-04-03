@@ -8,19 +8,24 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-link" href="/candidate/index">All Exams</a>
+          
           <a class="nav-link" href="/staff/login">Staff</a>
           <a class="nav-link" href="/candidate/login">Candidate</a>
+          <a class="nav-link" href="/staff/dashboard/exams">Exams</a>
+          <a class="nav-link" href="/staff/dashboard/exams/results">Results</a>
           <!-- <a class="nav-link" href="/statistics">Statistics</a> -->
         </div>
         <div class="navbar-nav move-right">
           <% if(!currentStaff) { %> 
             <!-- <a class="nav-link" href="/login" >Login</a> -->
             <a class="nav-link" href="/staff/register" ><i class="fad fa-user-plus"></i> Sign Up</a>
+            
           <% } else { %> 
               <a class="nav-link" href="" >Hi <%= currentStaff.username %>!</a>
 
+              <% if(currentStaff.role !="admin") {%> 
                   <a class="nav-link">Time Left: <span style="color: white; font-weight: bold;" id="exam-timer"></span></a>
+              <% } %> 
 
               <a class="nav-link" href="/staff/logout" >Logout <i class="fad fa-sign-out-alt"></i></a>
           <% } %> 

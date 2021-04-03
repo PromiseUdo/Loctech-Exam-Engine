@@ -1,7 +1,9 @@
 const Candidate = require('../models/staff');
-const Exams = require('../models/staff');
+const Exams = require('../models/exams');
 const Questions = require('../models/question');
 const Result = require('../models/results');
+const nodemailer = require('nodemailer');
+const smtpTransport = require("nodemailer-smtp-transport");
 
 module.exports.getResponses = async(req, res)=>{
 
@@ -11,7 +13,7 @@ module.exports.getResponses = async(req, res)=>{
     let score = 0;
     let rightOptions = [];
 
-    // const exam = await Exams.findById(exam)
+    const examNameQuery = await Exams.findById({_id:exam})
     // .populate("questions");
     
     for(question of questions){
@@ -48,8 +50,32 @@ module.exports.getResponses = async(req, res)=>{
 
     await newScore.save();
 
+    //send email to admin when students perform poorly on their exams
+    if(score.slice(0, score.indexOf('%')) < 50){
 
-};
+        const transporter = nodemailer.createTransport(smtpTransport({
+            service: "gmail",
+            host: "smtp.gmail.com",
+            auth: {
+                user: "loctechexamsengine@gmail.com",
+                pass: "locexams@pudopc6"
+            }
+        }));
+    
+        const mailOptions = {
+            from: "loctechexamsengine@gmail.com",
+            to: "info.promiseudo@gmail.com",
+            subject:`${req.user.username} Performance Report`,
+            html: `<b>Dear Admin,</b><br><br>${req.user.username} has performed below average on ${examNameQuery.name} with a score of ${score}.<br><br>Best Regards,<br><i>Loctech Exams Engine App</i>`
+        }
+    
+        await transporter.sendMail(mailOptions, function(error, info){
+            if(error) console.log(error); else console.log("Email sent: ");
+            
+        });
+
+    }
+ };
 
 module.exports.renderResultIndex = async(req, res)=>{
 

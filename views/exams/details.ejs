@@ -232,13 +232,18 @@
                                                 </div>
 
                                                 <!-- Edit Question Form -->
-                                                <form action="/staff/dashboard/exams/<%= exam._id %>/question/<%= question._id %>?_method=PUT" method="POST" class="question-edit">
+                                                <form action="/staff/dashboard/exams/<%= exam._id %>/question/<%= question._id %>?_method=PUT" method="POST" class="question-edit validated-form" novalidate>
                                                     <div class="modal-body p-4">
                                                         <input type="text" name="name" placeholder="Question" class="form-control my-2" value="<%= question.name %>">
+
                                                         <input type="text" name="A" placeholder="Option A" class="form-control my-2" value="<%= question.options.A %>">
+
                                                         <input type="text" name="B" placeholder="Option B" class="form-control my-2" value="<%= question.options.B %>">
+
                                                         <input type="text" name="C" placeholder="Option C" class="form-control my-2" value="<%= question.options.C %>">
+
                                                         <input type="text" name="D" placeholder="Option D" class="form-control my-2" value="<%= question.options.D %>">
+
                                                         <select name="correctAnswer" class="form-control">
                                                             <% for(let option of options) { %>
                                                                 <option value="<%=option.slice(-1)%>" <%= question.correctAnswer === option.slice(-1) ? "selected" : "" %> ><%=option%></option>                                                         

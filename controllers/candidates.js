@@ -87,13 +87,11 @@ module.exports.renderExam = async(req, res)=>{
 
            console.log(req.user._id, 'this is the current users ID');
 
-       Questions.findRandom({exam:id}, {}, {limit: 2}, function(err, questions) {
+       Questions.findRandom({exam:id}, {}, {limit: 5}, function(err, questions) {
        if (!err) {
            res.render('candidates/running', {exam, questions});
        }
      });
-
-
    }else{
        req.flash('error', "Sorry, You cannot take this exam again");
        res.redirect('/candidate/index');
@@ -105,7 +103,7 @@ module.exports.renderExam = async(req, res)=>{
 
         console.log(req.user._id, 'this is the current users ID');
 
-    Questions.findRandom({exam:id}, {}, {limit: 2}, function(err, questions) {
+    Questions.findRandom({exam:id}, {}, {limit: 5}, function(err, questions) {
     if (!err) {
         res.render('candidates/running', {exam, questions});
     }

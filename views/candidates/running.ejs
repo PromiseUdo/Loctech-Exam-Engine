@@ -15,8 +15,8 @@
         </div>
     </div>
 
-
-     <% for(question of questions) {%> 
+    <% if(questions){ %> 
+      <% for(question of questions) {%> 
         <div class="row">
             <div class="col-sm-6" style="margin:auto">
               <div class="card mt-2">
@@ -47,10 +47,9 @@
         </div>
 
      <% } %> 
-    
 
-
-      <a class="btn submit-btn">Submit</a>
+    <% } %> 
+ <a class="btn submit-btn">Submit</a>
 </div>
 <script src="/javascripts/running.js"></script>
 

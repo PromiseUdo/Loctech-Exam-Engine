@@ -95,44 +95,40 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1><%= result.candidate.username.toUpperCase() %> </h1>
-                        
-                        
-                     
+                        <h1><%=result.candidate.username %> - <%=result.score %>  </h1>
+    
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i>
-                                <%= result.exam.name %>
+                                <%=result.exam.name %> 
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
-                                                <th>Username</th>
+                                                <th>Question</th>
                                                 <th>Candidate Choices</th>
                                                 <th>Right Choices</th>     
-                                                <th>Score</th>                                  
                                                 
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                                <th>Username</th>
+                                                <th>Question</th>
                                                 <th>Candidate Choices</th>                                       
                                                 <th>Right Choices</th>
-                                                <th>Score</th>
                                                 
                                             </tr>
                                         </tfoot>
                                         <tbody>
+                                            <% for(let i=0; i < rightChoicearr.length; i++) {%> 
                                                 <tr>
-                                                    <td><%= result.candidate.username %> </td>
-                                                    <td><%= result.userChoices%> </td>
-                                                    <td><%= result.rightChoices%> </td>
-                                                    <td><%= result.score %> </td>
-                                               
+                                                    <td><%=result.questions[i].name %></td>
+                                                    <td><%=userChoicearr[i]%></td>
+                                                    <td><%=rightChoicearr[i]%></td>
                                                 </tr>
+                                            <% } %> 
                                         </tbody>
                                     </table>
                                 </div>

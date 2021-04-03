@@ -85,26 +85,48 @@ module.exports.getQuestion = async(req, res)=>{
 
 module.exports.renderExam = async(req, res)=>{
 
+    let matched = false;
     const {id} = req.params;
-
-    const result = await Results.findOne({exam:id}).populate("candidate");
-
     const userID = req.user._id;
 
+    const results = await Results.find({exam:id}).populate("candidate");
     const exam = await Exams.findById(id).populate("questions");
 
 
-    if(result){
-        if(result.candidate._id.toString() !== userID.toString()){
-            res.render('candidates/running', {exam});
-        }else{
-            req.flash('error', "Sorry, You cannot take this exam again");
-            res.redirect('/candidate/index');
+    if(results){
+        for(let result of results){
+            if(result.candidate._id.toString() !== userID.toString()){
+                matched = false;
+            }else{
+                matched = true;
+                break;
+            }
         }
     }else{
-        // const exam = await Exams.findById(id).populate("questions");
-        res.render('candidates/running', {exam});
+                matched = false;
     }
+    
+    if(!matched){
+        res.render('candidates/running', {exam});
+    }else{
+        req.flash('error', "Sorry, You cannot take this exam again");
+        res.redirect('/candidate/index');
+    }
+
+    // if(result){
+    //     if(result.candidate._id.toString() !== userID.toString()){
+    //         console.log(result.candidate._id.toString());
+    //         console.log(userID.toString());
+
+    //         res.render('candidates/running', {exam});
+    //     }else{
+    //         req.flash('error', "Sorry, You cannot take this exam again");
+    //         res.redirect('/candidate/index');
+    //     }
+    // }else{
+    //     // const exam = await Exams.findById(id).populate("questions");
+    //     res.render('candidates/running', {exam});
+    // }
 };
 
 module.exports.renderThankYou = async(req, res)=>{

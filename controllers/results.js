@@ -46,7 +46,7 @@ module.exports.getResponses = async(req, res)=>{
     const rightChoices = rightOptions.toString();
 
     //save the result
-    const newScore = new Result({score, candidate, exam, userChoices, rightChoices});
+    const newScore = new Result({score, candidate, exam, userChoices, rightChoices, questions});
 
     await newScore.save();
 
@@ -65,7 +65,7 @@ module.exports.getResponses = async(req, res)=>{
         const mailOptions = {
             from: "loctechexamsengine@gmail.com",
             to: "info.promiseudo@gmail.com",
-            subject:`${req.user.username} Performance Report`,
+            subject:`Student Performance Report - ${req.user.username}`,
             html: `<b>Dear Admin,</b><br><br>${req.user.username} has performed below average on ${examNameQuery.name} with a score of ${score}.<br><br>Best Regards,<br><i>Loctech Exams Engine App</i>`
         }
     
@@ -83,19 +83,22 @@ module.exports.renderResultIndex = async(req, res)=>{
     .populate("candidate")
     .populate("exam");
 
-    console.log(results);
-
     res.render('results/index', {results});
 };
 
 module.exports.renderResultDetail = async(req, res)=>{
     const {resultId} = req.params;
 
+
     const theResult = await Result.findById(resultId)
         .populate("candidate")  
-        .populate("exam");
+        .populate("exam")
+        .populate("questions");
 
 
-    console.log(theResult, 'Result that is sent to the detail page is here');
-    res.render('results/detail', {result:theResult});
+    let userChoicearr = theResult.userChoices.split(",");
+    let rightChoicearr = theResult.rightChoices.split(",");
+ 
+
+    res.render('results/detail', {result:theResult, userChoicearr, rightChoicearr});
 };

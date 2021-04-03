@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const {DateTime} = require("luxon");
 const Candidate = require('./staff');
 const Exam = require('./exams');
+const Questions = require('./question');
 
 const resultSchema = new mongoose.Schema({
     score: {
@@ -20,7 +21,14 @@ const resultSchema = new mongoose.Schema({
     },
     rightChoices:{
         type:String
-    }
+    },
+    questions:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref: 'Question'
+        }
+    ]
+    
 },
 {
   timestamps: true,

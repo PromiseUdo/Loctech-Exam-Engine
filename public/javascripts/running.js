@@ -21,7 +21,6 @@ const questionNum = document.querySelector("#question-num");
 const totalQuestionNum = document.querySelector("#total-question-num");
 
 
-
 let answers = [];
 let questions = [];
 let index = 0;

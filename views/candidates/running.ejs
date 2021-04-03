@@ -8,6 +8,7 @@
           <div class="card exam-title mt-3">
             <div class="card-body">
               <h2 class="card-title"><%= exam.name %></h2>
+              <p>Question: <span id="question-num"></span> of <span id="total-question-num"></span></p>
               <button style="display: none;" id="duration" value="<%=exam.duration %>"></button>                
 
             </div>
@@ -26,16 +27,16 @@
                               
                             <div id="choices" class="choices">
                               <div>
-                                  <span id="optA">A.</span>    <span id="A" class="answer"> </span>
+                                  <span class="opt">A.</span>    <span id="A" class="answer"> </span>
                               </div>
                               <div>
-                                  <span id="optB">B. </span>  <span id="B" class="answer"></span>
+                                  <span class="opt">B. </span>  <span id="B" class="answer"></span>
                               </div>
                               <div>
-                                  <span id="optC">C.</span>   <span id="C" class="answer"></span>
+                                  <span class="opt">C.</span>   <span id="C" class="answer"></span>
                               </div>
                               <div>
-                                  <span id="optD">D.</span>   <span id="D" class="answer"></span>
+                                  <span class="opt">D.</span>   <span id="D" class="answer"></span>
                               </div>
 
                           </div>

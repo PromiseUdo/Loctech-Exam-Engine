@@ -17,6 +17,10 @@ const labelA = document.querySelector('#labelA');
 const labelB = document.querySelector('#labelB');
 const labelC = document.querySelector('#labelC');
 const labelD = document.querySelector('#labelD');
+const questionNum = document.querySelector("#question-num");
+const totalQuestionNum = document.querySelector("#total-question-num");
+
+
 
 let answers = [];
 let questions = [];
@@ -70,6 +74,8 @@ if (response.status >= 400) {
 const showQuestion = (trivia, index) => {
   //show the question and options on thier respective placeholders
   const triviaStr = trivia[index];
+  questionNum.textContent = index + 1;
+  totalQuestionNum.textContent = trivia.length;
 
   question.textContent = triviaStr.name;
 

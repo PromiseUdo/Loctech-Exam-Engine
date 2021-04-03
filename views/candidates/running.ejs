@@ -8,48 +8,45 @@
           <div class="card exam-title mt-3">
             <div class="card-body">
               <h2 class="card-title"><%= exam.name %></h2>
-              <button type="hidden" id="duration" value="<%=exam.duration %>"></button>                
+              <button style="display: none;" id="duration" value="<%=exam.duration %>"></button>                
 
             </div>
           </div>
         </div>
     </div>
 
-    <% if(questions){ %> 
-      <% for(question of questions) {%> 
-        <div class="row">
-            <div class="col-sm-6" style="margin:auto">
-              <div class="card mt-2">
-                <div class="card-body question-body">
-                  <p class="card-title"><%=question.name %></p>
-                  <p class="card-text">
-                      
-                    <div class="form-check options">
-                        <input type="radio" class="form-check-input" name="<%= question.name %>" value="A" class="option-item" id="<%=question.options.A %>"><label class="form-check-label" for="<%=question.options.A %>"><%=question.options.A %></label>
-                    </div>
 
-                    <div class="form-check options">
-                        <input type="radio" class="form-check-input" name="<%= question.name %>" value="B" class="option-item" id="<%=question.options.B %>"><label class="form-check-label" for="<%=question.options.B %>"><%=question.options.B %></label>
-                    </div>
 
-                    <div class="form-check options">
-                        <input type="radio" class="form-check-input" name="<%= question.name %>" value="C" class="option-item" id="<%=question.options.C %>"><label class="form-check-label" for="<%=question.options.C %>"><%=question.options.C %></label>
-                    </div>
+                <div class="row">
+                    <div class="col-sm-6" style="margin:auto">
+                      <div class="card mt-2">
+                        <div class="card-body question-body">
+                          <p class="card-title" id="question"></p>
+                          <p class="card-text">
+                              
+                            <div id="choices" class="choices">
+                              <div>
+                                  <span id="optA">A.</span>    <span id="A" class="answer"> </span>
+                              </div>
+                              <div>
+                                  <span id="optB">B. </span>  <span id="B" class="answer"></span>
+                              </div>
+                              <div>
+                                  <span id="optC">C.</span>   <span id="C" class="answer"></span>
+                              </div>
+                              <div>
+                                  <span id="optD">D.</span>   <span id="D" class="answer"></span>
+                              </div>
 
-                    <div class="form-check options">
-                        <input type="radio" class="form-check-input" name="<%= question.name %>" value="D" class="option-item" id="<%=question.options.D %>"><label class="form-check-label" for="<%=question.options.D %>"><%=question.options.D %></label>
-                    </div>   
-                    <input type="hidden" id="questionId" name="questionId" value="<%=question._id%>">
-                  </p>
+                          </div>
+                          </p>
+
+
+
+                        </div>
+                      </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-        </div>
-
-     <% } %> 
-
-    <% } %> 
- <a class="btn submit-btn">Submit</a>
 </div>
 <script src="/javascripts/running.js"></script>
 

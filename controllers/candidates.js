@@ -58,7 +58,7 @@ module.exports.login = (req, res)=>{
 
 module.exports.renderIndex =  async(req, res)=>{
     const exams = await Exams.find({status:"Published"}).populate("author");
-    console.log(exams);
+    // console.log(exams);
     res.render('candidates/index', {exams});
 };
 
@@ -67,13 +67,23 @@ module.exports.renderInstructions = async(req, res)=>{
 
     const exam = await Exams.findById(id).populate("questions");
 
-    console.log(exam);
+    // console.log(exam);
 
     res.render('candidates/instructions', {exam});
 };
 
+
+module.exports.getQuestion = async(req, res)=>{
+    const id = req.query.id;
+
+    Questions.findRandom({exam:id}, {}, {limit: 3}, function(err, data) {
+        if (!err) {
+            res.send(data);
+        }
+      });
+}
+
 module.exports.renderExam = async(req, res)=>{
-    let matchedResult1 = false;
 
     const {id} = req.params;
 
@@ -81,38 +91,20 @@ module.exports.renderExam = async(req, res)=>{
 
     const userID = req.user._id;
 
+    const exam = await Exams.findById(id).populate("questions");
+
+
     if(result){
         if(result.candidate._id.toString() !== userID.toString()){
-            const exam = await Exams.findById(id).populate("questions");
-
-           console.log(req.user._id, 'this is the current users ID');
-
-       Questions.findRandom({exam:id}, {}, {limit: 5}, function(err, questions) {
-       if (!err) {
-           res.render('candidates/running', {exam, questions});
-       }
-     });
-   }else{
-       req.flash('error', "Sorry, You cannot take this exam again");
-       res.redirect('/candidate/index');
-
-   }
+            res.render('candidates/running', {exam});
+        }else{
+            req.flash('error', "Sorry, You cannot take this exam again");
+            res.redirect('/candidate/index');
+        }
     }else{
-
-        const exam = await Exams.findById(id).populate("questions");
-
-        console.log(req.user._id, 'this is the current users ID');
-
-    Questions.findRandom({exam:id}, {}, {limit: 5}, function(err, questions) {
-    if (!err) {
-        res.render('candidates/running', {exam, questions});
+        // const exam = await Exams.findById(id).populate("questions");
+        res.render('candidates/running', {exam});
     }
-  });
-
-    }
-
-    
-     
 };
 
 module.exports.renderThankYou = async(req, res)=>{
@@ -123,7 +115,7 @@ module.exports.renderThankYou = async(req, res)=>{
 module.exports.axiosData = async(req, res)=>{
     const {answers} = req.body;
     
-    console.log(answers);
+    // console.log(answers);
 };
 
 module.exports.uploadCandidates = upload.single('candidates'), async(req, res)=>{
@@ -159,7 +151,7 @@ try {
 module.exports.registerACandidate = async(req, res)=>{
     try{
         const {username, email, course, phone, passcode} = req.body;
-        console.log(username, email, course, phone, passcode);
+        // console.log(username, email, course, phone, passcode);
 
     }catch(e){
         console.log("Error:", e);

@@ -2,60 +2,109 @@ const queryString = window.location.pathname
 // const urlParams = new URLSearchParams(queryString);
 const exam = queryString.slice(16,40);
 const examDuration = parseInt(document.querySelector("#duration").value);
-
+const nextQuestion = document.querySelector('.next-btn');
 // console.log(questionId);
-
 const submitButton = document.querySelector(".submit-btn")
+//questions coming from Axios request
+const question = document.querySelector("#question");
+const answerBtns = document.querySelectorAll(".answer");
+const questionIdInput = document.querySelector('input[type="hidden"]');
+const optionA = document.querySelector("#A");
+const optionB = document.querySelector("#B");
+const optionC = document.querySelector("#C");
+const optionD = document.querySelector("#D");
+const labelA = document.querySelector('#labelA');
+const labelB = document.querySelector('#labelB');
+const labelC = document.querySelector('#labelC');
+const labelD = document.querySelector('#labelD');
 
-// 
 let answers = [];
 let questions = [];
-// console.log(num);
+let index = 0;
+let count = 0;
+
+//Use axios to get the questions candidate is to answer
+axios.get("/candidate/getquestion", {
+  params: {
+    id: exam
+  }
+}).then((response)=>{
+if (response.status >= 400) {
+    console.log(response.status);
+    throw new Error("Bad response from server");
+} else{
+    return response.data
+}
+}).then((data)=>{
+  console.log(data)
+  for(d of data){
+    //push all the questions fetched for the candidate into the questions array
+      questions.push(d._id);
+  }
+  
+  //show the question when the route is changed
+  if(window.location.pathname.slice(-7)==="running"){
+    showQuestion(data, index);
+
+  }
+
+  answerBtns.forEach((answerBtn) => {
+    answerBtn.addEventListener("click", (e) => {
+      //push candidate's answers into the answers array
+        answers.push(e.target.id);
+        index++; //increment the index of the questions array
+      if (index >= data.length) {
+        //when question is exhausted, send the answers to the backend
+        sendAnswers(answers, questions, exam);
+      } else {
+        //if we've still got more questions then show them
+        showQuestion(data, index);
+      }
+    });
+  });
 
 
-function sendAnswers(){
-    const num = document.querySelectorAll('input[type="radio"]:checked');
-    const questionIds = document.querySelectorAll('input[type="hidden"]');
+})
 
 
-    for(opt of num){
-        // console.log(questionId, 'dfdfdfdfdfdfdfdfdfdf');
+const showQuestion = (trivia, index) => {
+  //show the question and options on thier respective placeholders
+  const triviaStr = trivia[index];
 
-        let res = opt.value;
-        answers.push(res);
-        // answers.push(res);
-        console.log(answers, 'user answers');
-    }
+  question.textContent = triviaStr.name;
 
-    for(questionId of questionIds){
-        let id = questionId.value;
-        questions.push(id);
-        console.log(questions, 'right ids');
+  optionA.textContent = triviaStr.options.A;
 
-    }
+  optionB.textContent = triviaStr.options.B;
 
+  optionC.textContent = triviaStr.options.C;
+
+  optionD.textContent = triviaStr.options.D;
+};
+
+
+
+//function to send the answers using the fetch API
+function sendAnswers(answers, questions, exam){
 
     fetch("/candidate/exam/results", {
         method: "POST",
         body: JSON.stringify({ answers, questions, exam }),
         headers: { "Content-Type": "application/json" },
       });
-
       window.location.pathname = '/candidate/thankyou'
-
 }
 
-submitButton.addEventListener("click", sendAnswers);
 
-
-
+//this function starts the timer immediately we on the exams page
 if(queryString.slice(-7)==="running"){
-
-    countdown("exam-timer", examDuration, 0);
-
+  // examDuration
+    countdown("exam-timer", examDuration , 0);
 }
 
 
+
+//this function takes care of timing the candidate
 function countdown(elementName, minutes, seconds) {
     var element, endTime, hours, mins, msLeft, time;
   
@@ -68,7 +117,7 @@ function countdown(elementName, minutes, seconds) {
       if (msLeft < 1000) {
         
         document.querySelector('body').style.backgroundColor="red";
-        sendAnswers();
+        sendAnswers(answers, questions, exam);
         window.location.pathname = '/candidate/thankyou'
 
       } else {

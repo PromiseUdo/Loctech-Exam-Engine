@@ -14,6 +14,9 @@ router.route('/login')
 router.route('/index')
     .get(isLoggedIn, candidate.renderIndex);
 
+router.route('/getquestion')
+    .get(isLoggedIn, candidate.getQuestion);
+
 
 router.route('/exam/:id/instructions')
     .get(isLoggedIn, candidate.renderInstructions);
@@ -23,6 +26,8 @@ router.route('/exam/:id/running')
 
 router.route('/thankyou')
     .get(candidate.renderThankYou);
+
+
 // router.get('/staff/dashboard', isLoggedIn, candidates.renderDashboard);
 
 // router.route('/exam/axios')

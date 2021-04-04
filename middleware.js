@@ -2,6 +2,7 @@
 const ExpressError = require('./utilities/ExpressError');
 const Staff = require('./models/staff');
 const Question = require('./models/question');
+const Exam = require('./models/exams');
 
 module.exports.isLoggedIn = (req, res, next)=>{
     // console.log('LoggedInUser', req.user);
@@ -13,6 +14,20 @@ module.exports.isLoggedIn = (req, res, next)=>{
     }
     next();
 };
+
+
+module.exports.isOwner = async(req,res,next)=>{
+    const {id} = req.params;
+    const exam = await Exam.findById(id);
+    if(!exam.author.equals(req.user._id)){
+        req.flash('error', 'Sorry, Only the exam author has access to the exams');
+        return res.redirect(`/staff/dashboard/exams`);
+    }else{
+        next();
+    }
+}
+
+
 
 //check if Admin
 module.exports.isAdmin = (req,res,next)=>{

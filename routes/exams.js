@@ -5,7 +5,7 @@ const catchAsync = require('../utilities/catchAsync');
 const passport = require('passport');
 const exam = require('../controllers/exams');
 const result = require('../controllers/results');
-const {isLoggedIn, isAdmin} = require('../middleware');
+const {isLoggedIn, isAdmin, isOwner} = require('../middleware');
 
 router.route('/')
     .get(isLoggedIn, isAdmin, catchAsync(exam.renderExamIndex))
@@ -19,9 +19,9 @@ router.route('/:resultId/detail')
     .get(isLoggedIn, isAdmin, catchAsync(result.renderResultDetail));
 
 router.route('/:id')
-    .get(isLoggedIn, isAdmin, catchAsync(exam.showExamDetails))
-    .put(isLoggedIn, isAdmin, catchAsync(exam.updateExam))
-    .delete(isLoggedIn, isAdmin, catchAsync(exam.deleteExam));
+    .get(isLoggedIn, isAdmin, isOwner, catchAsync(exam.showExamDetails))
+    .put(isLoggedIn, isAdmin, isOwner, catchAsync(exam.updateExam))
+    .delete(isLoggedIn, isAdmin, isOwner, catchAsync(exam.deleteExam));
 
 
     

@@ -13,6 +13,8 @@ module.exports.getResponses = async(req, res)=>{
     let score = 0;
     let rightOptions = [];
 
+    const candidatePhone = await Candidate.findById(candidate).select("phone");
+
     const examNameQuery = await Exams.findById({_id:exam})
     // .populate("questions");
     
@@ -46,7 +48,7 @@ module.exports.getResponses = async(req, res)=>{
     const rightChoices = rightOptions.toString();
 
     //save the result
-    const newScore = new Result({score, candidate, exam, userChoices, rightChoices, questions});
+    const newScore = new Result({score, candidate, phone:candidatePhone.phone, exam, userChoices, rightChoices, questions});
 
     await newScore.save();
 

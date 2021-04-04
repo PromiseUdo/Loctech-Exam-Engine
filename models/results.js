@@ -12,6 +12,9 @@ const resultSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
+    phone:{
+        type:String
+    },
     exam:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Exam"

@@ -20,3 +20,15 @@
         $("body").toggleClass("sb-sidenav-toggled");
     });
 })(jQuery);
+
+$(document).ready(function() {
+    $('#dataTable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'pdfHtml5',
+            'print'
+        ]
+    } );
+} );

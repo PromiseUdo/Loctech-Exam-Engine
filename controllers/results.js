@@ -51,30 +51,35 @@ module.exports.getResponses = async(req, res)=>{
     await newScore.save();
 
     //send email to admin when students perform poorly on their exams
-    if(score.slice(0, score.indexOf('%')) < 50){
+    //exclude scholarship exams to avoid spamming
 
-        const transporter = nodemailer.createTransport(smtpTransport({
-            service: "gmail",
-            host: "smtp.gmail.com",
-            auth: {
-                user: "loctechexamsengine@gmail.com",
-                pass: "locexams@pudopc6"
+    if(examNameQuery.name.toLowerCase().includes("scholarship")=== false){
+        if(score.slice(0, score.indexOf('%')) < 50){
+
+            const transporter = nodemailer.createTransport(smtpTransport({
+                service: "gmail",
+                host: "smtp.gmail.com",
+                auth: {
+                    user: "loctechexamsengine@gmail.com",
+                    pass: "locexams@pudopc6"
+                }
+            }));
+        
+            const mailOptions = {
+                from: "loctechexamsengine@gmail.com",
+                to: "info.promiseudo@gmail.com",
+                subject:`Student Performance Report - ${req.user.username}`,
+                html: `<b>Dear Admin,</b><br><br>${req.user.username} has performed below average on ${examNameQuery.name} with a score of ${score}.<br><br>Best Regards,<br><i>Loctech Exams Engine App</i>`
             }
-        }));
+        
+            await transporter.sendMail(mailOptions, function(error, info){
+                if(error) console.log(error); else console.log("Email sent: ");
+                
+            });
     
-        const mailOptions = {
-            from: "loctechexamsengine@gmail.com",
-            to: "info.promiseudo@gmail.com",
-            subject:`Student Performance Report - ${req.user.username}`,
-            html: `<b>Dear Admin,</b><br><br>${req.user.username} has performed below average on ${examNameQuery.name} with a score of ${score}.<br><br>Best Regards,<br><i>Loctech Exams Engine App</i>`
         }
-    
-        await transporter.sendMail(mailOptions, function(error, info){
-            if(error) console.log(error); else console.log("Email sent: ");
-            
-        });
-
     }
+ 
  };
 
 module.exports.renderResultIndex = async(req, res)=>{

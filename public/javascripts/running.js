@@ -76,7 +76,7 @@ const showQuestion = (trivia, index) => {
   questionNum.textContent = index + 1;
   totalQuestionNum.textContent = trivia.length;
 
-  question.textContent = triviaStr.name;
+  question.innerHTML = triviaStr.name;
 
   optionA.textContent = triviaStr.options.A;
 

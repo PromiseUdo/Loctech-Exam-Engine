@@ -111,7 +111,8 @@
                                 <!-- Create Question Form -->
                             <form action="/staff/dashboard/exams/<%= exam._id %>/question" method="POST" id="question-create">
                                 <div class="modal-body p-4">
-                                   <input type="text" name="name" placeholder="Question" class="form-control my-2">
+
+                                <textarea name="name" placeholder="Type your question here" id="editor"></textarea>
                                    <input type="text" name="A" placeholder="Option A" class="form-control my-2">
                                    <input type="text" name="B" placeholder="Option B" class="form-control my-2">
                                    <input type="text" name="C" placeholder="Option C" class="form-control my-2">
@@ -208,7 +209,7 @@
                                         <tbody>
                                             <% for(let question of exam.questions){ %> 
                                                 <tr>
-                                                    <td scope="row"><%= question.name %> </td>
+                                                    <td scope="row"><%= question.name.replace(/(<([^>]+)>)/gi, "") %> </td>
                                                     <td><%= question.date_created %> </td>
                                                     <td><%= question.options.A %> </td>
                                                     <td><%= question.options.B %> </td>
@@ -234,7 +235,10 @@
                                                 <!-- Edit Question Form -->
                                                 <form action="/staff/dashboard/exams/<%= exam._id %>/question/<%= question._id %>?_method=PUT" method="POST" class="question-edit validated-form" novalidate>
                                                     <div class="modal-body p-4">
-                                                        <input type="text" name="name" placeholder="Question" class="form-control my-2" value="<%= question.name %>">
+
+                                                        <textarea name="name" placeholder="Type your question here" id="editor"><%=question.name %></textarea>
+
+                                                        
 
                                                         <input type="text" name="A" placeholder="Option A" class="form-control my-2" value="<%= question.options.A %>">
 
@@ -330,6 +334,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/javascripts/scripts.js"></script>
         <script src="/javascripts/candidate.js"></script>
+        <script src="/javascripts/tinymce.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="/assets/demo/chart-area-demo.js"></script>
         <script src="/assets/demo/chart-bar-demo.js"></script>

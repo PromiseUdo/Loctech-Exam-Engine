@@ -1,17 +1,12 @@
-.answer:hover{
-  background-color: #51f79b;
-}
 
 
-.choices div {
+
+/* .choices div {
   margin: 10px;
-}
+} */
 
-.answer {
-  padding: 5px;
+.form-check {
   margin: 10px;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 .questionContainer{
@@ -45,13 +40,10 @@
 
 
 label {
-  position:relative;
-  padding-left:2.5ch;
-  display: block;
-  margin-bottom: 5px;
+  padding-left:1.0ch;
 }
 
-label > [type=radio] {
+/* label > [type=radio] {
   position: absolute;
   left: 0;
-}
+} */

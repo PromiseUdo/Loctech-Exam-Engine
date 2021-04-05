@@ -86,7 +86,9 @@ module.exports.registerACandidate = async(req, res)=>{
 
 module.exports.createNewStaff = async(req, res)=>{
     try{
-        const {username, email, password, role} = req.body;
+        const {username, email, password, confirmPassword, role} = req.body;
+            console.log(confirmPassword,username);
+
 
         const staff = new Staff({email, username, role});
         const registeredStaff = await Staff.register(staff, password);

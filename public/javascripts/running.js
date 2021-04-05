@@ -9,10 +9,10 @@ const submitButton = document.querySelector(".submit-btn")
 const question = document.querySelector("#question");
 const answerBtns = document.querySelectorAll(".answer");
 const questionIdInput = document.querySelector('input[type="hidden"]');
-const optionA = document.querySelector("#A");
-const optionB = document.querySelector("#B");
-const optionC = document.querySelector("#C");
-const optionD = document.querySelector("#D");
+const optionA = document.querySelector("#optALabel");
+const optionB = document.querySelector("#optBLabel");
+const optionC = document.querySelector("#optCLabel");
+const optionD = document.querySelector("#optDLabel");
 const labelA = document.querySelector('#labelA');
 const labelB = document.querySelector('#labelB');
 const labelC = document.querySelector('#labelC');
@@ -68,7 +68,9 @@ if (response.status >= 400) {
         sendAnswers(answers, questions, exam);
       } else {
         //if we've still got more questions then show them
-        showQuestion(data, index);
+        setTimeout(function(){ showQuestion(data, index); }, 500);
+
+        // showQuestion(data, index);
       }
     });
   });
@@ -80,6 +82,14 @@ if (response.status >= 400) {
 const showQuestion = (trivia, index) => {
   //show the question and options on thier respective placeholders
   const triviaStr = trivia[index];
+  answerBtns.forEach((answerBtn) => {
+    answerBtn.checked = false;
+    answerBtn.setAttribute("name", triviaStr.name);
+    console.log(answerBtn);
+  })
+
+
+  
   questionNum.textContent = index + 1;
   totalQuestionNum.textContent = trivia.length;
 

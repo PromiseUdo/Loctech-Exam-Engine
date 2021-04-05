@@ -120,13 +120,6 @@ module.exports.renderThankYou = async(req, res)=>{
     req.logout();
     req.flash('success', "Goodbye!");
     res.render('candidates/thankyou');
-
-    // res.render('candidates/thankyou');
-
-    // await req.logout();
-    // setTimeout(function(){ res.redirect("/staff/logout") }, 1000);
-
-    // res.render('candidates/thankyou');
 }
 
 module.exports.axiosData = async(req, res)=>{

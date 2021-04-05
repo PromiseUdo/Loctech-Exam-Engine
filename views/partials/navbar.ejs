@@ -2,23 +2,18 @@
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark main-nav">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">LOCTECH Exams</a>
+      <a class="navbar-brand" href="/candidate">LOCTECH Exams</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           
-          <a class="nav-link" href="/staff/login">Staff</a>
-          <a class="nav-link" href="/candidate/login">Candidate</a>
-          <!-- <a class="nav-link" href="/staff/dashboard/exams">Exams</a> -->
-          <!-- <a class="nav-link" href="/staff/dashboard/exams/results">Results</a> -->
-          <!-- <a class="nav-link" href="/statistics">Statistics</a> -->
-        </div>
+         </div>
         <div class="navbar-nav move-right">
           <% if(!currentStaff) { %> 
             <!-- <a class="nav-link" href="/login" >Login</a> -->
-            <a class="nav-link" href="/staff/register" ><i class="fad fa-user-plus"></i> Sign Up</a>
+            <a class="nav-link" href="https://loctechng.com/scholarship-2021/" target="_blank" ><i class="fad fa-user-plus"></i> Sign Up</a>
             
           <% } else { %> 
               <a class="nav-link" href="" >Hi <%= currentStaff.username %>!</a>

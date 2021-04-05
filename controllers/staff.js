@@ -3,6 +3,9 @@ const Candidate = require('../models/staff');
 const Exams = require('../models/exams');
 const Questions= require('../models/question');
 const Results = require('../models/results');
+const validUsername = ["promise.udo", "hubert.nyinah", "dan.martins", "jerry.anubi", "abassyornor.edem", "ebube.ike", "joy.okwu", "hope.israel", "lawson.chibueze", "godbless.alali"];
+const validDomainName = ["loctech.ng", "loctechng.com"];
+
 
 module.exports.renderRegister = (req, res)=>{
     res.render('staff/register');
@@ -21,45 +24,26 @@ module.exports.renderNewStaff = async(req, res)=>{
 
 module.exports.register = async (req, res)=>{
     try{
-        const {username, email, password, confirmPassword, role} = req.body;
+        const {username, email, password, role} = req.body;
 
         //to check if its a loctech staff before creating a new staff;
         let domainPart = email.slice(email.indexOf('@')+1,);
         let usernamePart = email.slice(0, email.indexOf('@'));
 
-        if(domainPart !== "loctech.ng"){
-            req.flash('error', 'Sorry, You are not a staff of Loctech');
+        // if(domainPart !== "loctech.ng"){
+
+        if(validDomainName.includes(domainPart) === false || validUsername.includes(usernamePart) === false){
+            req.flash('error', 'Sorry, Please Sign Up with a Valid Loctech Domain Email Address');
             res.redirect('/staff/register');
         }else{
-            //check for Admin
-            if(((role == "admin") && (usernamePart == "joy.okwu")) || ((role == "admin") && (usernamePart == "hope.israel")) || ((role == "admin") && (usernamePart == "promise.udo")) || ((role == "admin"))){
-
                 const staff = new Staff({email, username, role});
                 const registeredStaff = await Staff.register(staff, password);
                 //login user immediately after registering
-
                 req.login(registeredStaff, err=>{
                     if(err) return next(err);
                     return res.redirect('/staff/dashboard');
                 });
-               
-            }else if(((role == "admin") && (usernamePart !== "joy.okwu"))){
-                
-                req.flash('error', 'Sorry you cannot register as an admin. Try other staff');
-                return res.redirect('/staff/register');
-              
-            }else{
-                const staff = new Staff({email, username, role});
-                const registeredStaff = await Staff.register(staff, password);
-
-                //register stafff after login
-
-                req.login(registeredStaff, err=>{
-                    if(err) return next(err);
-                    return res.redirect('/staff/dashboard');
-                });   
-            }
-    }
+        }
     }catch(e){
         req.flash('error', e.message);
         res.redirect('/staff/register')
@@ -87,13 +71,20 @@ module.exports.registerACandidate = async(req, res)=>{
 module.exports.createNewStaff = async(req, res)=>{
     try{
         const {username, email, password, confirmPassword, role} = req.body;
-            console.log(confirmPassword,username);
 
+        let domainPart = email.slice(email.indexOf('@')+1,);
+        let usernamePart = email.slice(0, email.indexOf('@'));
 
-        const staff = new Staff({email, username, role});
-        const registeredStaff = await Staff.register(staff, password);
+        // if(domainPart !== "loctech.ng"){
 
-        res.redirect("/staff/dashboard/new-staff");
+        if(validDomainName.includes(domainPart) === false || validUsername.includes(usernamePart) === false){
+            req.flash('error', 'Sorry, Please Sign Up with a Valid Loctech Domain Email Address');
+            res.redirect('/staff/dashboard/new-staff');
+        }else{
+                const staff = new Staff({email, username, role});
+                const registeredStaff = await Staff.register(staff, password);
+                res.redirect("/staff/dashboard/new-staff");
+        }
     }catch(e){
         console.log("Error:", e);
     }

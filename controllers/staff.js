@@ -70,7 +70,7 @@ module.exports.registerACandidate = async(req, res)=>{
 
 module.exports.createNewStaff = async(req, res)=>{
     try{
-        const {username, email, password, confirmPassword, role} = req.body;
+        const {username, email, password, role} = req.body;
 
         let domainPart = email.slice(email.indexOf('@')+1,);
         let usernamePart = email.slice(0, email.indexOf('@'));

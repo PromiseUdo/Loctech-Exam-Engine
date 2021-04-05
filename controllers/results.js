@@ -68,7 +68,7 @@ module.exports.getResponses = async(req, res)=>{
         
             const mailOptions = {
                 from: "loctechexamsengine@gmail.com",
-                to: "info.promiseudo@gmail.com",
+                to: "joy.okwu@loctech.ng, hope.israel@loctech.ng, promise.udo@loctech.ng",
                 subject:`Student Performance Report - ${req.user.username}`,
                 html: `<b>Dear Admin,</b><br><br>${req.user.username} has performed below average on ${examNameQuery.name} with a score of ${score}.<br><br>Best Regards,<br><i>Loctech Exams Engine App</i>`
             }

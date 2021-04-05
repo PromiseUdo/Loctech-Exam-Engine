@@ -29,7 +29,8 @@ const resultRoutes = require('./routes/results');
 
 
 //connection to the database
-mongoose.connect('mongodb://localhost:27017/loc-exams', {
+// mongodb://localhost:27017
+mongoose.connect('mongodb+srv://admin-promise:locexamspc6@cluster0.ustfc.mongodb.net/loc-exams', {
 
     // mongoose.connect('mongodb+srv://admin-Promise:locmealpc6@cluster0.yb7gz.mongodb.net/loc-exams', {
         useNewUrlParser: true, 

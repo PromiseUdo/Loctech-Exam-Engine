@@ -33,18 +33,19 @@ $(document).ready(function() {
     } );
 } );
 
-let password = document.getElementById("password");
-let confirm_password = document.getElementById("confirmPassword");
+window.onload = () => {
+    let conf =document.getElementById('confirmPassword')
+    let pass =document.getElementById('password')
 
-console.log(password.value);    
+    function val(){
+        if(conf.value !== pass.value ){
+            console.log("Passwords don't match");
+        }
+    }
 
-function validatePassword(){
-  if(password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Passwords Don't Match");
-  } else {
-    confirm_password.setCustomValidity('');
-  }
+    // conf.onchange = (ev) => {
+    //     if(ev.target.value !== pass.value ){
+    //         console.log("Passwords don't match");
+    //     }
+    // }
 }
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;

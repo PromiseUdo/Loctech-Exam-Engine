@@ -37,6 +37,10 @@ module.exports.index = async (req, res)=>{
 
 };
 
+module.exports.renderCandidateHome = (req, res)=>{
+    res.render('candidates/home');
+}
+
 module.exports.renderNewForm = async(req, res)=>{
     res.render('candidates/new');
 };

@@ -88,10 +88,6 @@ module.exports.createNewStaff = async(req, res)=>{
     try{
         const {username, email, password, role} = req.body;
 
-        // console.log(username, email, course, phone, password);
-        // const staff = new Staff({...req.body});
-        // await staff.save();
-
         const staff = new Staff({email, username, role});
         const registeredStaff = await Staff.register(staff, password);
 

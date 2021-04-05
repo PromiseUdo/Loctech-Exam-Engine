@@ -17,6 +17,8 @@ router.route('/index')
 router.route('/getquestion')
     .get(isLoggedIn, candidate.getQuestion);
 
+router.route('/candidate/home')
+    .get(candidate.renderCandidateHome);
 
 router.route('/exam/:id/instructions')
     .get(isLoggedIn, candidate.renderInstructions);

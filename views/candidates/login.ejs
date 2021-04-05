@@ -1,15 +1,16 @@
 <% layout('layouts/boilerplate') %> 
 <link rel="stylesheet" href="/stylesheets/login.css">
 
-<!-- <div class="container"> -->
+<div class="container">
     <div class="row mt-5">
         <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
             <img src="images/loctech.png" alt="" class="company-logo">
                 <h2>Online Exam Portal</h2>
             <div class="card shadow">
                 <div class="card-body">
-                    <small class="text-muted">Sign in to start your session</small>
-                    <form action="/candidate/login" method="POST" class="validated-form" novalidate>
+                    <h5 class="card-title">Candidate</h5>
+                    <small class="text-muted">Sign in to take your exam</small>
+                    <form action="/candidate/login" method="POST" class="mt-2 validated-form" novalidate>
                         <div class="mb-3">
                             <input class="form-control" type="text" id="username" name="username" placeholder="Username" autofocus required>
                             <div class="valid-feedback">Looks good!</div>
@@ -26,8 +27,8 @@
                     </form>
                 </div>
             </div>
-            <small class="copyrightMsg">&copy; 2021 Loctech Online Exam Software</small><br/>
-            <small class="mt-4 text-center">Not Registered? <a href="https://loctechng.com/scholarship-2021/" class="fw-bold login-register-link" target="_blank">Signup</a></small>
+            <p class="mt-2 text-muted text-center footer-text">&copy; 2021 Loctech Online Exam Software</p>
+            <p class="mt-4 text-muted text-center footer-text">Not Registered? <a href="https://loctechng.com/scholarship-2021/" class="fw-bold login-register-link" target="_blank">Signup</a></p>
         </div>
     </div>
-<!-- </div> -->
+</div>

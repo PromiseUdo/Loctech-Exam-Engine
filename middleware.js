@@ -5,7 +5,6 @@ const Question = require('./models/question');
 const Exam = require('./models/exams');
 
 module.exports.isLoggedIn = (req, res, next)=>{
-    // console.log('LoggedInUser', req.user);
     if(!req.isAuthenticated()){
         //store a url to redirect to in the session
         req.session.redirecTo = req.originalUrl;

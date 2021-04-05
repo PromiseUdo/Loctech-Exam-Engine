@@ -19,7 +19,15 @@ const labelC = document.querySelector('#labelC');
 const labelD = document.querySelector('#labelD');
 const questionNum = document.querySelector("#question-num");
 const totalQuestionNum = document.querySelector("#total-question-num");
+const examTitle = document.querySelector('.exam-title');
+const questionBox = document.querySelector('.question-details');
+const r = Math.round((Math.random()*255) + 1);
+const g = Math.round((Math.random()*255) + 1);
+const b = Math.round((Math.random()*255) + 1);
 
+//change the exam-title border-top color 
+examTitle.style.borderTopColor = `rgb(${r},${g},${b})`;
+questionBox.style.borderColor = `rgb(${r},${g},${b})`;
 
 let answers = [];
 let questions = [];
@@ -39,7 +47,6 @@ if (response.status >= 400) {
     return response.data
 }
 }).then((data)=>{
-  console.log(data)
   for(d of data){
     //push all the questions fetched for the candidate into the questions array
       questions.push(d._id);

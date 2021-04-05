@@ -1,21 +1,20 @@
 <% layout('layouts/boilerplate') %> 
 <link rel="stylesheet" href="/stylesheets/login.css">
 
-<!-- <div class="container"> -->
+<div class="container">
     <div class="row mt-5">
         <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
             <img src="images/loctech.png" alt="" class="company-logo">
                 <h2>Online Exam Portal</h2>
             <div class="card shadow">
-                <!-- <img src="https://images.pexels.com/photos/734983/pexels-photo-734983.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" class="card-img-top"> -->
                 <div class="card-body">
+                    <h5 class="card-title">Staff</h5>
                     <small class="text-muted">Sign in to start adding questions</small>
-                    <form action="/staff/login" method="POST" class="validated-form" novalidate>
+                    <form action="/staff/login" method="POST" class="mt-2 validated-form" novalidate>
                         <div class="mb-3">
                             <input class="form-control" type="text" id="username" name="username" placeholder="Username" autofocus required>
                             <div class="valid-feedback">Looks good!</div>
                         </div>
-                    <!-- 3213 -->
                         <div class="mb-3">
                             <input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
                             <div class="valid-feedback">Looks good!</div>
@@ -27,8 +26,9 @@
                     </form>
                 </div>
             </div>
-            <small class="copyrightMsg">&copy; 2021 Loctech Online Exam Software</small><br/>
-            <small class="mt-4 text-center">Not Registered? <a href="/staff/register" class="fw-bold login-register-link">Signup</a></small>
+ 
+            <p class="mt-2 text-muted text-center footer-text">&copy; 2021 Loctech Online Exam Software</p>
+            <p class="text-muted text-center footer-text">Not Registered? <a href="/staff/register" class="fw-bold login-register-link">Signup</a></p>
         </div>
     </div>
-<!-- </div> -->
+</div>

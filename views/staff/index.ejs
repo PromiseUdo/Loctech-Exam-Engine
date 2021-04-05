@@ -1,6 +1,5 @@
 <% layout('layouts/boilerplate') %> 
 <link href="/stylesheets/styles.css" rel="stylesheet" />
-<link href="/stylesheets/dashboard.css" rel="stylesheet" />
 
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -103,7 +102,7 @@
                            
                                 <div class="col-xl-4 col-md-6">
                                     <div class="card bg-primary text-white mb-4">
-                                        <div class="card-body">Registered Candidates</div>
+                                        <div class="card-body">REGISTERED CANDIDATES</div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
                                             <%=candidates.length%>
                                             <div class="small text-white"></div>
@@ -112,8 +111,8 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-4 col-md-6">
-                                    <div class="card bg-warning text-white mb-4">
-                                        <div class="card-body">Exams Written</div>
+                                    <div class="card bg-success text-white mb-4">
+                                        <div class="card-body">EXAMS TAKEN</div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
                                             <%=results.length%>
                                             <div class="small text-white"></div>
@@ -122,7 +121,7 @@
                                 </div>
                                 <div class="col-xl-4 col-md-6">
                                     <div class="card bg-danger text-white mb-4">
-                                        <div class="card-body">Added Questions</div>
+                                        <div class="card-body">QUESTION BANK</div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
                                             <%=questions.length %>
                                             <div class="small text-white"></div>

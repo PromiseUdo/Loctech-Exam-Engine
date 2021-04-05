@@ -108,10 +108,10 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <!-- Create Exam Form -->
-                                <form action="/staff/dashboard/exams" method="POST" id="exam-create">
+                                <form action="/staff/dashboard/exams" method="POST" id="exam-create" class="validated-form" novalidate>
                                     <div class="modal-body p-4">
-                                       <input type="text" name="name" placeholder="Exam name" class="form-control my-2">
-                                       <input type="number" min="5" name="duration" placeholder="Exam Duration" class="form-control my-2">
+                                       <input type="text" name="name" placeholder="Exam name" class="form-control my-2" required autofocus>
+                                       <input type="number" min="5" name="duration" placeholder="Exam Duration" class="form-control my-2" required>
                                        <select name="status" class="form-control my-2">
                                            <option value="Draft">Draft</option>
                                            <option value="Published">Published</option>
@@ -228,8 +228,8 @@
                                                                     <!-- Edit Admin Form -->
                                                                     <form action="/staff/dashboard/exams/<%= exam._id %>?_method=PUT" method="POST" class="exam-edit" novalidate class="validated-form">
                                                                         <div class="modal-body p-4">
-                                                                            <input type="text" name="name" placeholder="Exam Name" class="form-control my-2" value="<%= exam.name %>">
-                                                                            <input type="number" min="5" name="duration" placeholder="Exam Duration" class="form-control my-2" value="<%= exam.duration %>">
+                                                                            <input type="text" name="name" placeholder="Exam Name" class="form-control my-2" value="<%= exam.name %>" requierd autofocus>
+                                                                            <input type="number" min="5" name="duration" placeholder="Exam Duration" class="form-control my-2" value="<%= exam.duration %>" required>
                                                                             <select name="status" class="form-control my-2">
 
                                                                                 <% for(let state of status) { %>

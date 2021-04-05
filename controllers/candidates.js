@@ -58,7 +58,6 @@ module.exports.login = (req, res)=>{
 
 module.exports.renderIndex =  async(req, res)=>{
     const exams = await Exams.find({status:"Published"}).populate("author");
-    // console.log(exams);
     res.render('candidates/index', {exams});
 };
 
@@ -67,7 +66,6 @@ module.exports.renderInstructions = async(req, res)=>{
 
     const exam = await Exams.findById(id).populate("questions");
 
-    // console.log(exam);
 
     res.render('candidates/instructions', {exam});
 };
@@ -112,26 +110,19 @@ module.exports.renderExam = async(req, res)=>{
         req.flash('error', "Sorry, You cannot take this exam again");
         res.redirect('/candidate/index');
     }
-
-    // if(result){
-    //     if(result.candidate._id.toString() !== userID.toString()){
-    //         console.log(result.candidate._id.toString());
-    //         console.log(userID.toString());
-
-    //         res.render('candidates/running', {exam});
-    //     }else{
-    //         req.flash('error', "Sorry, You cannot take this exam again");
-    //         res.redirect('/candidate/index');
-    //     }
-    // }else{
-    //     // const exam = await Exams.findById(id).populate("questions");
-    //     res.render('candidates/running', {exam});
-    // }
 };
 
 module.exports.renderThankYou = async(req, res)=>{
     req.logout();
+    req.flash('success', "Goodbye!");
     res.render('candidates/thankyou');
+
+    // res.render('candidates/thankyou');
+
+    // await req.logout();
+    // setTimeout(function(){ res.redirect("/staff/logout") }, 1000);
+
+    // res.render('candidates/thankyou');
 }
 
 module.exports.axiosData = async(req, res)=>{

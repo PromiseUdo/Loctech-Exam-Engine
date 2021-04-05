@@ -109,11 +109,11 @@
                                 </div>
     
                                 <!-- Create Admin Form -->
-                                <form action="/staff/dashboard/new-staff" method="POST" id="admin-create">
+                                <form action="/staff/dashboard/new-staff" class="validated-form" novalidate method="POST" id="admin-create">
                                     <div class="modal-body p-4">
-                                       <input type="text" name="username" placeholder="Username" class="form-control my-2">
-                                       <input type="email" name="email" placeholder="Email" class="form-control my-2">
-                                       <input type="text" name="password" placeholder="Password" class="form-control my-2">
+                                       <input type="text" name="username" placeholder="Username" class="form-control my-2" required autofocus>
+                                       <input type="email" name="email" placeholder="Email" class="form-control my-2" required>
+                                       <input type="text" name="password" placeholder="Password" class="form-control my-2" required>
                                        <input type="hidden" name="role" value="admin" placeholder="Password" class="form-control my-2">                                  
                                     </div>
                                     <div class="modal-footer">
@@ -141,7 +141,7 @@
                                                 <th>Username</th>
                                                 <th>Email</th>
                                                 <th scope="col"></th>
-                                                <th scope="col"></th>
+                                                <!-- <th scope="col"></th> -->
                                                 
                                             </tr>
                                         </thead>
@@ -150,7 +150,7 @@
                                                 <th>Username</th>
                                                 <th>Email</th>
                                                 <th scope="col"></th>
-                                                <th scope="col"></th>
+                                                <!-- <th scope="col"></th> -->
                                                 
                                             </tr>
                                         </tfoot>
@@ -178,8 +178,8 @@
                                                                     <!-- Edit Admin Form -->
                                                                     <form action = "/staff/dashboard/update-staff/<%= staff._id %>?_method=PUT" method="POST" novalidate class="candidate-edit validated-form">
                                                                         <div class="modal-body p-4">
-                                                                            <input type="text" name="username" placeholder="Username" class="form-control my-2" value="<%= staff.username %>">
-                                                                            <input type="email" name="email" placeholder="Email" class="form-control my-2" value="<%= staff.email %>">
+                                                                            <input type="text" name="username" placeholder="Username" class="form-control my-2" value="<%= staff.username %>" required autofocus>
+                                                                            <input type="email" name="email" placeholder="Email" class="form-control my-2" value="<%= staff.email %>" required>
                                                     
                                                                             <!-- <input type="hidden" name="id" value="<%= staff._id %>"> -->
                                                                         </div>
@@ -196,13 +196,13 @@
                                                     </td>
                                                     <!-- Edit Modal Candidate -->
 
-                                                    <!-- Delete Modal candidate -->
+                                                    <!-- Delete Modal candidate
                                                     <td class="text-center">
-                                                        <!-- Delete Modal Button -->
+                                                        Delete Modal Button
                                                         <a href="#" data-bs-toggle="modal" data-bs-target="#deleteAdminModal<%= staff._id %>"><i class="far fa-trash-alt text-danger"></i></a>
-                                                        <!-- Delete Modal Button -->
+                                                        Delete Modal Button
                     
-                                                        <!-- Delete Admin Modal -->
+                                                        Delete Admin Modal
                                                         <div class="modal fade" id="deleteAdminModal<%= staff._id %>" tabindex="-1" aria-labelledby="deleteAdminModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog modal-dialog-centered">
                                                                 <div class="modal-content">
@@ -211,7 +211,7 @@
                                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                     </div>
                     
-                                                                    <!-- Delete Admin Form -->
+                                                                    Delete Admin Form
                                                                     <form action="/staff/dashboard/update-staff/<%= staff._id %>?_method=DELETE" method="POST" class="admin-delete">
                                                                         <div class="modal-body p-4">
                                                                             <p>Are you sure you want to delete <%= staff.username %>?</p>
@@ -222,12 +222,12 @@
                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                                                         </div>
                                                                     </form>
-                                                                    <!-- Delete Admin Form -->
+                                                                    Delete Admin Form
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <!-- Delete Admin Modal -->
-                                                    </td>
+                                                        Delete Admin Modal
+                                                    </td> -->
 
 
 

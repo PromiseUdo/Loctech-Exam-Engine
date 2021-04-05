@@ -109,16 +109,16 @@
                                 </div>
     
                                 <!-- Create Question Form -->
-                            <form action="/staff/dashboard/exams/<%= exam._id %>/question" method="POST" id="question-create">
+                            <form action="/staff/dashboard/exams/<%= exam._id %>/question" method="POST" id="question-create" class="validated-form" novalidate>
                                 <div class="modal-body p-4">
 
-                                <textarea name="name" placeholder="Type your question here" id="editor"></textarea>
-                                   <input type="text" name="A" placeholder="Option A" class="form-control my-2">
-                                   <input type="text" name="B" placeholder="Option B" class="form-control my-2">
-                                   <input type="text" name="C" placeholder="Option C" class="form-control my-2">
-                                   <input type="text" name="D" placeholder="Option D" class="form-control my-2">
+                                <textarea name="name" placeholder="Type your question here" id="editor" required autofocus spellcheck="true"></textarea>
+                                   <input type="text" name="A" spellcheck="true" placeholder="Option A" class="form-control my-2" required>
+                                   <input type="text" name="B" placeholder="Option B" class="form-control my-2" spellcheck="true" required>
+                                   <input type="text" name="C" placeholder="Option C" class="form-control my-2" spellcheck="true" required>
+                                   <input type="text" name="D" placeholder="Option D" class="form-control my-2" spellcheck="true" required>
                                    <select name="correctAnswer" class="form-control">
-                                        <option>---- Correct Answer ----</option>
+                                        <option>-- Choose Correct Answer --</option>
                                         <option value="A">Option A</option>
                                         <option value="B">Option B</option>
                                         <option value="C">Option C</option>
@@ -236,17 +236,17 @@
                                                 <form action="/staff/dashboard/exams/<%= exam._id %>/question/<%= question._id %>?_method=PUT" method="POST" class="question-edit validated-form" novalidate>
                                                     <div class="modal-body p-4">
 
-                                                        <textarea name="name" placeholder="Type your question here" id="editor"><%=question.name %></textarea>
+                                                        <textarea name="name" placeholder="Type your question here" id="editor" required autofocus><%=question.name %></textarea>
 
                                                         
 
-                                                        <input type="text" name="A" placeholder="Option A" class="form-control my-2" value="<%= question.options.A %>">
+                                                        <input type="text" name="A" placeholder="Option A" class="form-control my-2" value="<%= question.options.A %>" required>
 
-                                                        <input type="text" name="B" placeholder="Option B" class="form-control my-2" value="<%= question.options.B %>">
+                                                        <input type="text" name="B" placeholder="Option B" class="form-control my-2" value="<%= question.options.B %>" required>
 
-                                                        <input type="text" name="C" placeholder="Option C" class="form-control my-2" value="<%= question.options.C %>">
+                                                        <input type="text" name="C" placeholder="Option C" class="form-control my-2" value="<%= question.options.C %>" required>
 
-                                                        <input type="text" name="D" placeholder="Option D" class="form-control my-2" value="<%= question.options.D %>">
+                                                        <input type="text" name="D" placeholder="Option D" class="form-control my-2" value="<%= question.options.D %>" required>
 
                                                         <select name="correctAnswer" class="form-control">
                                                             <% for(let option of options) { %>

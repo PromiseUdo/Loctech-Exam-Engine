@@ -43,8 +43,6 @@ module.exports.showExamDetails = async (req, res)=>{
     .populate("questions")
     .populate("author");
 
-    console.log(exam);
-
     res.render("exams/details", {exam, options});
 };
 

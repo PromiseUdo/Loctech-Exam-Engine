@@ -93,22 +93,44 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1>New Candidate <i class="fas fa-user-plus"></i></h1>
-                        <small class="text-muted" >Upload multiple candidates as CSV </small><i class="fas fa-file-csv"></i>
-                        <!-- CSV upload -->
-                        <!-- enctype="multipart/form-data" -->
-                        <form action="/upload" method="POST" enctype="multipart/form-data">
-                            <div>
-                                <input class="form-control" type="file" name="candidates">
-                                <button class="btn btn-danger mt-2 mb-3" id="uploadCSV" type="submit">Upload</button>
-                            </div>
-                            
-                        </form>
 
-                        <div class="card shadow">
-                            <!-- <img src="https://images.pexels.com/photos/734983/pexels-photo-734983.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="" class="card-img-top"> -->
+
+                        <button type="button" class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#createAdminModal">
+                            IMPORT
+                            </button>
+                            <!-- Create Admin Modal Button-->
+            
+                            <!-- Create Admin Modal -->
+                            <div class="modal fade" id="createAdminModal" tabindex="-1" aria-labelledby="createAdminModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="createAdminModalLabel">Import Data</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+            
+                                        <!-- Create Admin Form -->
+                                        <form action="/upload" method="POST" enctype="multipart/form-data">
+                                            <div class="modal-body p-4">
+                                                <img style="margin-left: 25%;" src="/assets/img/importdata.png" width="200px" alt=""><br>
+                                                <p class="text-center text-muted">Import candidate data from an excel sheet</p>
+                                                <input class="form-control" type="file" name="candidates">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-success mt-2 mb-3" id="uploadCSV" type="submit">IMPORT</button>
+                                                <button type="button" class="btn btn-secondary mt-2 mb-3" data-bs-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </form>
+                                        <!-- Create Admin Form -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        <h1>New Candidate <i class="fas fa-user-plus"></i></h1>
+                      
+                        <div class="card mt-5">
                             <div class="card-body">
-                                <h5 class="card-title">Register a candidate</h5>
+                                <h5 class="card-title">Fill In Details</h5>
                                 <form action="/staff/dashboard" method="POST" class="validated-form" novalidate>
                                     <div class="mb-3">
                                         <input class="form-control" type="text" id="username" name="username" placeholder="Username" required autofocus>
@@ -144,16 +166,15 @@
                                     </div>
             
                                     <div class="mb-3">
-                                        <input class="form-control mb-1" readonly type="text" id="passcode" name="password" placeholder="Passcode" required>
+                                        <input class="form-control mb-1" readonly type="text" id="passcode" name="password" placeholder="Password" required>
                                         <div class="valid-feedback mb-1">Looks good!</div>
-                                        <input class="btn btn-dark btn-sm" type="submit" id="generatePasscode" value="Generate Passcode" formaction="">
+                                        <input class="btn btn-dark btn-sm" type="submit" id="generatePasscode" value="Generate Password" formaction="">
                                     </div>
                                     <div class="d-grid gap-2">
-                                        <button class="btn btn-success">Register</button>
+                                        <button class="btn btn-primary">Register</button>
                                     </div>
                                 </form>
-            
-            
+        
                             </div>
                         </div>
                     </div>

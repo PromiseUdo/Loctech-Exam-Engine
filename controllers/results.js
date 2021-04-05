@@ -41,7 +41,6 @@ module.exports.getResponses = async(req, res)=>{
     //calculate the students score
     score = Math.round((countOfMatchedAnswers / countOfQuestions) * 100) + "%";
 
-    // console.log(score);
 
     //convert users answers from array to a string to be saved to database
     const userChoices = answers.toString();

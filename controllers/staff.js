@@ -26,8 +26,6 @@ module.exports.register = async (req, res)=>{
         //to check if its a loctech staff before creating a new staff;
         let domainPart = email.slice(email.indexOf('@')+1,);
         let usernamePart = email.slice(0, email.indexOf('@'));
-        console.log(domainPart);
-        console.log(usernamePart);
 
         if(domainPart !== "loctech.ng"){
             req.flash('error', 'Sorry, You are not a staff of Loctech');
@@ -62,8 +60,6 @@ module.exports.register = async (req, res)=>{
                 });   
             }
     }
-            console.log(role, usernamePart);
-
     }catch(e){
         req.flash('error', e.message);
         res.redirect('/staff/register')
@@ -80,6 +76,7 @@ module.exports.registerACandidate = async(req, res)=>{
         candidate.passcode = password;
 
         const registeredCandidate = await Candidate.register(candidate, password);
+        req.flash('success', `${username} is registered successfully`);
 
         res.redirect("/staff/dashboard/candidate/new");
     }catch(e){
@@ -133,7 +130,6 @@ module.exports.updateStaff = async(req, res)=>{
     const {username, email} = req.body;
     const {id} = req.params;
     const filter = {_id: id};
-    console.log(req.body, 'the id of the staff');
 
     // Updating user data with passport
     // Staff.updateOne({_id: req.session.passport.user.id}, {
@@ -151,14 +147,14 @@ module.exports.updateStaff = async(req, res)=>{
 
 
     // const staff = await Staff.findOneAndUpdate({filter, ...req.body});
-    // // req.flash('success', 'Successfully updated Admin');
+    req.flash('success', 'Successfully updated Admin');
     // res.redirect('/staff/dashboard/new-staff');
 };
 
 module.exports.deleteStaff = async (req, res)=>{
     const{id} = req.params;
     // await MealTicket.findOneAndDelete(id);
-    await Staff.findByIdAndDelete({_id:id});
+    await Staff.findByIdAndDelete(id);
     // await MealTicket.findByIdAndDelete()
 
     res.redirect('/staff/dashboard/new-staff');
@@ -167,13 +163,10 @@ module.exports.deleteStaff = async (req, res)=>{
 
 
 module.exports.renderLogin = (req,res)=>{
-    console.log(__basedir);
     res.render('staff/login')
 }
 
 module.exports.login = (req,res)=>{
-
-    console.log(req.user.role);
     if(req.user.role !== "admin"){
         req.flash('error', "Sorry you are not authorized to login as staff");
         res.redirect('/candidate/login');

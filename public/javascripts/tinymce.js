@@ -1,3 +1,6 @@
+// Template.notes.onRendered(function() {
+//   tinymce.EditorManager.editors = [];//we need to remove the old instances. 
+
 tinymce.init({
     selector: 'textarea',
     plugins: 'image code',
@@ -52,3 +55,5 @@ tinymce.init({
     },
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
   });
+
+// });

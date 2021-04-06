@@ -6,8 +6,16 @@ const Questions = require('../models/question');
 module.exports.createQuestion = async(req, res)=>{
     const {id} = req.params;
     const exam = await Exams.findById(id);
-    const {name, A, B, C, D, correctAnswer} = req.body;
-    
+    let {name, A, B, C, D, correctAnswer} = req.body;
+
+    //remove leading and trailing white spaces
+    name = name.replace(/&nbsp;/g, '');
+    A = A.replace(/&nbsp;/g, '');
+    B = B.replace(/&nbsp;/g, '');
+    C = C.replace(/&nbsp;/g, '');
+    D = D.replace(/&nbsp;/g, '');
+
+    console.log(name, "here is the question");
     const newQuestion = new Questions({
         name,
         options:{
@@ -30,8 +38,15 @@ module.exports.createQuestion = async(req, res)=>{
 module.exports.updateQuestion = async(req, res)=>{
     // const {id} = req.params;
     // const exam = await Exams.findById(id);
-    const {name, A, B, C, D, correctAnswer, examId, questionId} = req.body;
+    let {name, A, B, C, D, correctAnswer, examId, questionId} = req.body;
     const exam = await Exams.findById(examId);
+    //remove leading and trailing white spaces
+    name = name.replace(/&nbsp;/g, '');
+    A = A.replace(/&nbsp;/g, '');
+    B = B.replace(/&nbsp;/g, '');
+    C = C.replace(/&nbsp;/g, '');
+    D = D.replace(/&nbsp;/g, '');
+
 
     console.log(examId, questionId);
     const updatedQuestion = await Questions.findByIdAndUpdate(questionId, {

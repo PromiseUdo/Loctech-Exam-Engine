@@ -27,6 +27,10 @@ const examSchema = new mongoose.Schema(
     duration:{
       type:Number,
       required: "Please enter the exam duration"
+    },
+    noOfQuestions:{
+      type:Number,
+      required: "Please provide number of questions to be answered by candidate"
     }
   },
   {

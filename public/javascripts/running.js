@@ -8,6 +8,7 @@ const submitButton = document.querySelector(".submit-btn")
 //questions coming from Axios request
 const question = document.querySelector("#question");
 const answerBtns = document.querySelectorAll(".answer");
+const navBtns = document.querySelectorAll(".nav-quest");
 const questionIdInput = document.querySelector('input[type="hidden"]');
 const optionA = document.querySelector("#optALabel");
 const optionB = document.querySelector("#optBLabel");
@@ -29,9 +30,17 @@ const b = Math.round((Math.random()*255) + 1);
 examTitle.style.borderTopColor = `rgb(${r},${g},${b})`;
 questionBox.style.borderColor = `rgb(${r},${g},${b})`;
 
+for(navBtn of navBtns){
+  navBtn.style.backgroundColor = "red";
+  navBtn.disabled = true;
+}
+
+navBtns[0].disabled = false;
+
 let answers = [];
 let questions = [];
 let index = 0;
+let index2 = 0;
 let count = 0;
 
 //Use axios to get the questions candidate is to answer
@@ -58,26 +67,79 @@ if (response.status >= 400) {
 
   }
 
+navBtns.forEach((navBtn)=>{
+    navBtn.addEventListener("click", (e)=>{
+        showQuestion(data, e.target.id-1);
+        // console.log(e.target.id);
+        index2 = e.target.id-1;
+    })
+});
+
+navBtns.forEach((navBtn)=>{
+  navBtn.addEventListener("focus", (e)=>{
+      navBtn.style.backgroundColor= "orange";
+  })
+});
+
+navBtns.forEach((navBtn)=>{
+  navBtn.addEventListener("focusout", (e)=>{
+      navBtn.style.backgroundColor= "green";
+  })
+});
+
+
+
+
   answerBtns.forEach((answerBtn) => {
     answerBtn.addEventListener("click", (e) => {
       //push candidate's answers into the answers array
-        answers.push(e.target.id);
-        index++; //increment the index of the questions array
-      if (index >= data.length) {
-        //when question is exhausted, send the answers to the backend
-        sendAnswers(answers, questions, exam);
-      } else {
-        //if we've still got more questions then show them
-        setTimeout(function(){ showQuestion(data, index); }, 500);
+        // answers.push(e.target.id);
 
-        // showQuestion(data, index);
-      }
+      // console.log(index2);
+
+      answers.splice(index2, 1, e.target.id);
+      console.log(index2, 'index 2')
+      turnGreen(index2);
+      disableNextBtn(index2);
+      console.log(answers);
+      // index++; //increment the index of the questions array
+
+      //   // submit button submits
+      // if (index >= data.length) {
+      //   //when question is exhausted, send the answers to the backend
+      //   sendAnswers(answers, questions, exam);
+      // } else {
+      //   //if we've still got more questions then show them
+
+      //   // showQuestion(data, index);
+      // }
     });
   });
 
+  submitButton.addEventListener("click",function(){
+    console.log(answers, 'Final anwsers here')
+    sendAnswers(answers, questions, exam);
 
+  })
+ 
 })
 
+function turnGreen(index){
+    let rightIndex = index+1;
+    let navBtn = document.getElementById(rightIndex);
+    console.log(navBtn);
+    navBtn.style.backgroundColor = "green";
+}
+
+function disableNextBtn(index){
+  console.log(index+1);
+  console.log(navBtns.length);
+  if(index+2 <= navBtns.length){
+    let rightIndex = index+2;
+    let navBtn = document.getElementById(rightIndex);
+    navBtn.disabled = false;
+  }
+}
 
 const showQuestion = (trivia, index) => {
   //show the question and options on thier respective placeholders
@@ -86,9 +148,15 @@ const showQuestion = (trivia, index) => {
     answerBtn.checked = false;
     answerBtn.setAttribute("name", triviaStr.name);
     console.log(answerBtn);
+   
   })
 
+  console.log(index, 'index from show question');
+  let triviaOpt = answers[index];
 
+  if(triviaOpt != null){
+    document.getElementById(triviaOpt).checked = true;
+  }
   
   questionNum.textContent = index + 1;
   totalQuestionNum.textContent = trivia.length;

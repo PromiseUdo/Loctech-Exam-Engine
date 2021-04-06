@@ -19,7 +19,7 @@
                 <%if(exam.questions.length < 2) { %> 
                     There is <%= exam.questions.length %> question in total with 4 responses 
                 <% }else{ %> 
-                    There are <strong><%= exam.questions.length %> questions</strong> in total. Each question comprises four responses. You will select the response which you want.
+                    There are <strong><%= exam.noOfQuestions %> questions</strong> in total. Each question comprises four responses. You will select the response which you want.
                 <% } %> 
             </li>
             <li>
@@ -39,6 +39,9 @@
             </li>
             <li>
                 <strong>Do not</strong>  use the "Back" and "Forward" buttons in your web browser when you are taking the Exam.
+            </li>
+            <li>
+                You cannot advance to the next question if the current question is unanswered. But you can always return to change your answer.
             </li>
             <li>
                 Click on the <em>Start Exam</em> button to begin

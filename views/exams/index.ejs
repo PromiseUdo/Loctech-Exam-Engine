@@ -111,6 +111,7 @@
                                 <form action="/staff/dashboard/exams" method="POST" id="exam-create" class="validated-form" novalidate>
                                     <div class="modal-body p-4">
                                        <input type="text" name="name" placeholder="Exam name" class="form-control my-2" required autofocus>
+                                       <input type="number" min="1" max="<%=exam.questions.length %>" name="noOfQuestions" placeholder="Questions To Set" class="form-control my-2" required>
                                        <input type="number" min="5" name="duration" placeholder="Exam Duration" class="form-control my-2" required>
                                        <select name="status" class="form-control my-2">
                                            <option value="Draft">Draft</option>
@@ -175,7 +176,8 @@
                                                 <th>Name</th>
                                                 <th>Date Created</th>
                                                 <th>Author</th>
-                                                <th>No. of Questions</th>
+                                                <th>Question Bank</th>
+                                                <th>Quetions To Set</th>
                                                 <th>Duration</th>
                                                 <th>Status</th>
                                                 <th scope="col"></th>
@@ -189,7 +191,8 @@
                                                 <th>Name</th>
                                                 <th>Date Created</th>
                                                 <th>Author</th>
-                                                <th>No. of Questions</th>
+                                                <th>Question Bank</th>
+                                                <th>Question To Set</th>
                                                 <th>Duration</th>
                                                 <th>Status</th>
                                                 <th scope="col"></th>
@@ -206,6 +209,7 @@
                                                     <td><%= exam.date_created %> </td>
                                                     <td><%= exam.author.username  %> </td>
                                                     <td><%= exam.questions.length %> </td>
+                                                    <td><%= exam.noOfQuestions %> </td>
                                                     <td><%= exam.duration %> minutes </td>
                                                     <td><%= exam.status %> </td>
                                                     <td><a href="/staff/dashboard/exams/<%= exam._id %>" class="btn btn-info">View</a></td>
@@ -229,6 +233,7 @@
                                                                     <form action="/staff/dashboard/exams/<%= exam._id %>?_method=PUT" method="POST" class="exam-edit" novalidate class="validated-form">
                                                                         <div class="modal-body p-4">
                                                                             <input type="text" name="name" placeholder="Exam Name" class="form-control my-2" value="<%= exam.name %>" requierd autofocus>
+                                                                            <input type="number" min="1" max="<%=exam.questions.length %>" name="noOfQuestions" placeholder="Questions To Set" class="form-control my-2" value="<%= exam.noOfQuestions %>" required>
                                                                             <input type="number" min="5" name="duration" placeholder="Exam Duration" class="form-control my-2" value="<%= exam.duration %>" required>
                                                                             <select name="status" class="form-control my-2">
 

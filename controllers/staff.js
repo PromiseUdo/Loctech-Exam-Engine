@@ -24,8 +24,8 @@ module.exports.renderNewStaff = async(req, res)=>{
 
 module.exports.register = async (req, res)=>{
     try{
-        const {username, email, password, role} = req.body;
-
+        let {username, email, password, role} = req.body;
+        username = username.trim();
         //to check if its a loctech staff before creating a new staff;
         let domainPart = email.slice(email.indexOf('@')+1,);
         let usernamePart = email.slice(0, email.indexOf('@'));
@@ -53,8 +53,9 @@ module.exports.register = async (req, res)=>{
 
 module.exports.registerACandidate = async(req, res)=>{
     try{
-        const {username, email, course, phone, password} = req.body;
+        let {username, email, course, phone, password} = req.body;
 
+        username= username.trim();
         // console.log(username, email, course, phone, password);
         const candidate = new Candidate({username, email, course, phone});
         candidate.passcode = password;
@@ -70,8 +71,8 @@ module.exports.registerACandidate = async(req, res)=>{
 
 module.exports.createNewStaff = async(req, res)=>{
     try{
-        const {username, email, password, role} = req.body;
-
+        let {username, email, password, role} = req.body;
+        username = username.trim();
         let domainPart = email.slice(email.indexOf('@')+1,);
         let usernamePart = email.slice(0, email.indexOf('@'));
 

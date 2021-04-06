@@ -78,7 +78,10 @@ module.exports.renderInstructions = async(req, res)=>{
 module.exports.getQuestion = async(req, res)=>{
     const id = req.query.id;
 
-    Questions.findRandom({exam:id}, {}, {limit: 20}, function(err, data) {
+    //retrieve the number of questions to set for this exam
+    const exm = await Exams.findById(id);
+
+    Questions.findRandom({exam:id}, {}, {limit: exm.noOfQuestions}, function(err, data) {
         if (!err) {
             res.send(data);
         }

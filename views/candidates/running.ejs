@@ -15,75 +15,76 @@
           </div>
         </div>
     </div>
-                <div class="row">
-                    <div class="col-sm-6" style="margin:auto">
-                      <div class="card mt-2 question-details">
-                        <div class="card-body question-body">
-                          <p class="card-title" id="question"></p>
-                          <p class="card-text">
-                              
-                            <div id="choices" class="choices">
+    <div class="row">
+        <div class="col-sm-6" style="margin:auto">
+          <div class="card mt-2 question-details">
+            <div class="card-body question-body">
+              <p class="card-title" id="question"></p>
+              <p class="card-text">
+                  
+                <div id="choices" class="choices">
 
-                                <div class="form-check">
-                                  <input class="form-check-input answer" type="radio" name="" id="A"><label class="form-check-label"  for="A" id="optALabel"></label>
-                                </div>
-
-                                <div class="form-check">
-                                  <input class="form-check-input answer" type="radio" name="" id="B"><label class="form-check-label"  for="B" id="optBLabel"></label>
-                                </div>
-
-                                <div class="form-check">
-                                  <input class="form-check-input answer" type="radio" name="" id="C"><label class="form-check-label" for="C" id="optCLabel"></label>
-                                </div>
-
-                                <div class="form-check">
-                                  <input class="form-check-input answer" type="radio" name="" id="D"><label class="form-check-label" for="D" id="optDLabel"></label>
-                                </div>
-
-                          </div>
-                          </p>
-
-                        </div>
-
-                      </div>
-                      <div class="mt-3">
-                        <% for(let i=1; i<= exam.noOfQuestions; i++) {%> 
-                          <button class="btn mt-2 nav-quest" id="<%=i%>"><%=i %></button>
-                        <% } %> 
-                      
-                      </div>
+                    <div class="form-check">
+                      <input class="form-check-input answer" type="radio" name="" id="A"><label class="form-check-label"  for="A" id="optALabel"></label>
                     </div>
 
-                </div>
-
-                <div class="d-grid gap-2 col-6 mx-auto">
-
-                  <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    SUBMIT
-                  </button>
-
-                  <!-- Modal -->
-                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          ...
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="submit-btn btn-success btn">Save changes</button>
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                          
-                        </div>
-                      </div>
+                    <div class="form-check">
+                      <input class="form-check-input answer" type="radio" name="" id="B"><label class="form-check-label"  for="B" id="optBLabel"></label>
                     </div>
-                  </div>
 
-                </div>
+                    <div class="form-check">
+                      <input class="form-check-input answer" type="radio" name="" id="C"><label class="form-check-label" for="C" id="optCLabel"></label>
+                    </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input answer" type="radio" name="" id="D"><label class="form-check-label" for="D" id="optDLabel"></label>
+                    </div>
+
+              </div>
+              </p>
+
+            </div>
+
+          </div>
+          <div class="mt-3">
+            <% for(let i=1; i<= exam.noOfQuestions; i++) {%> 
+              <button class="btn mt-2 nav-quest" id="<%=i%>"><%=i %></button>
+            <% } %> 
+          
+          </div>
+        </div>
+
+    </div>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-success mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        SUBMIT EXAM
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Confirm Exam Submission</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to submit this Exam?</p> 
+              <p>You will not be able to return to the Exam!</p> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="submit-btn btn-success btn">Submit Exam</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 <script src="/javascripts/running.js"></script>
 

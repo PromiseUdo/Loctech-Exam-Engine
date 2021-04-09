@@ -122,7 +122,7 @@ app.post("/upload", upload.single("candidates"), async (req, res) => {
         .pipe(csv({}))
         .on("data", (data) => results.push(data))
         .on("end", async () => {
-          console.log(results);
+          // console.log(results);
           for (let person of results) {
             //generate a random password for each candidate
             const password = (passwordId) =>

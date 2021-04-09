@@ -143,7 +143,7 @@ try {
       .pipe(csv({}))
       .on('data', (data)=>results.push(data))
       .on('end',async()=>{
-          console.log(results);
+        //   console.log(results);
         for(let person of results){
             //generate a random password for each candidate
             const password = passwordId => Math.floor(Math.random() * 999999) + 10000;

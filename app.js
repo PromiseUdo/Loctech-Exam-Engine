@@ -27,7 +27,7 @@ const resultRoutes = require("./routes/results");
 
 //connection to the database mongodb+srv://admin-promise:locexamspc6@cluster0.ustfc.mongodb.net
 // mongodb://localhost:27017
-mongoose.connect("mongodb+srv://admin-promise:locexamspc6@cluster0.ustfc.mongodb.net/examDB", {
+mongoose.connect("mongodb://localhost:27017/examDB", {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,

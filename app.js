@@ -98,7 +98,7 @@ app.use((req, res, next) => {
 //create the file storage engine using multer
 const fileStorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, __dirname+"/csv");
+    cb(null, "/csv");
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
@@ -109,7 +109,7 @@ const upload = multer({
   storage: fileStorageEngine,
 });
 
-const pathFile = __dirname+"/csv/data.csv";
+const pathFile = "/csv/data.csv";
 
 app.post("/upload", upload.single("candidates"), async (req, res) => {
   // console.log(req.file);
@@ -118,7 +118,7 @@ app.post("/upload", upload.single("candidates"), async (req, res) => {
     if (fs.existsSync(pathFile)) {
       //file exists
       console.log("File exists");
-      fs.createReadStream(__dirname+"/csv/data.csv")
+      fs.createReadStream("/csv/data.csv")
         .pipe(csv({}))
         .on("data", (data) => results.push(data))
         .on("end", async () => {

@@ -169,7 +169,7 @@ const showQuestion = (trivia, index) => {
 };
 
 //function to send the answers using the fetch API
-function sendAnswers(answers, questions, exam) {
+ function sendAnswers(answers, questions, exam) {
   fetch("/candidate/exam/results", {
     method: "POST",
     body: JSON.stringify({ answers, questions, exam }),

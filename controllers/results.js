@@ -47,7 +47,7 @@ module.exports.getResponses = async (req, res) => {
     const rightChoices = rightOptions.toString();
 
     //save the result
-    const newScore = await Result.create({
+    const newScore = new Result({
       score,
       candidate,
       phone: candidatePhone.phone,
@@ -56,6 +56,8 @@ module.exports.getResponses = async (req, res) => {
       rightChoices,
       questions,
     });
+
+    await newScore.save();
 
     //send email to admin when students perform poorly on their exams
     //exclude scholarship exams to avoid spamming

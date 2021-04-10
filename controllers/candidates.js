@@ -18,7 +18,7 @@ let newCandidate = "";
 //create the file storage engine using multer
 const fileStorageEngine = multer.diskStorage({
     destination:(req, file, cb)=>{
-        cb(null, '/csv' )
+        cb(null, __basedir +'/csv' )
     },
     filename:(req, file, cb)=>{
         cb(null, file.originalname)
@@ -29,7 +29,7 @@ const upload = multer({
     storage:fileStorageEngine
 });
 
-const path2 = '/csv/data.csv';
+const path2 = __basedir +'/csv/data.csv';
 
 
 module.exports.index = async (req, res)=>{
@@ -139,7 +139,7 @@ try {
     if (fs.existsSync(path2)){
       //file exists
       console.log('File exists');
-      fs.createReadStream('/csv/data.csv')
+      fs.createReadStream(__basedir +'/csv/data.csv')
       .pipe(csv({}))
       .on('data', (data)=>results.push(data))
       .on('end',async()=>{

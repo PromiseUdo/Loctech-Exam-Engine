@@ -2,8 +2,6 @@ const Candidate = require("../models/staff");
 const Exams = require("../models/exams");
 const Questions = require("../models/question");
 const Result = require("../models/results");
-const nodemailer = require("nodemailer");
-const smtpTransport = require("nodemailer-smtp-transport");
 
 module.exports.getResponses = async (req, res) => {
   const candidate = req.user._id;
@@ -47,7 +45,6 @@ module.exports.getResponses = async (req, res) => {
     const rightChoices = rightOptions.toString();
 
     //save the result
-     //save the result
      const newScore = await Result.create({
       score,
       candidate,
@@ -57,9 +54,12 @@ module.exports.getResponses = async (req, res) => {
       rightChoices,
       questions,
     });
+<<<<<<< HEAD
 
     //send email to admin when students perform poorly on their exams
     //exclude scholarship exams to avoid spamming
+=======
+>>>>>>> e6daecb3f838fe46aa8405fb304d2c89c50c420e
   } catch (e) {
     console.log(e);
   }
@@ -67,6 +67,8 @@ module.exports.getResponses = async (req, res) => {
 
 module.exports.renderResultIndex = async (req, res) => {
   const results = await Result.find().populate("candidate").populate("exam");
+
+
 
   res.render("results/index", { results });
 };

@@ -54,12 +54,9 @@ module.exports.getResponses = async (req, res) => {
       rightChoices,
       questions,
     });
-<<<<<<< HEAD
 
     //send email to admin when students perform poorly on their exams
     //exclude scholarship exams to avoid spamming
-=======
->>>>>>> e6daecb3f838fe46aa8405fb304d2c89c50c420e
   } catch (e) {
     console.log(e);
   }

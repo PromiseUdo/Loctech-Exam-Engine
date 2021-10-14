@@ -1,5 +1,7 @@
 <% layout('layouts/boilerplate') %> 
 <link rel="stylesheet" href="/stylesheets/login.css">
+<link rel="stylesheet" href="/stylesheets/formStyle.css">
+
 
 <div class="container">
     <div class="row mt-5">
@@ -10,14 +12,16 @@
                 <div class="card-body">
                     <h5 class="card-title">Candidate</h5>
                     <small class="text-muted">Sign in to take your exam</small>
-                    <form action="/candidate/login" method="POST" class="mt-2 validated-form" novalidate>
+                    <form action="/candidate/login" method="POST" class="mt-2 validated-form go-bottom" novalidate>
                         <div class="mb-3">
                             <input class="form-control" type="text" id="username" name="username" placeholder="Username" autofocus required>
+                            <label for="username">Username</label>
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                     <!-- 3213 -->
                         <div class="mb-3">
                             <input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
+                            <label for="password">Password</label>
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                         <div class="d-grid gap-2">

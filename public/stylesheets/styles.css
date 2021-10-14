@@ -200,6 +200,15 @@ figure {
   margin: 0 0 1rem;
 }
 
+.new-candidate-card{
+  width:40%;
+  margin:0 auto;
+}
+
+.new-candidate-card-body{
+  margin:0 auto;
+}
+
 img {
   vertical-align: middle;
   border-style: none;

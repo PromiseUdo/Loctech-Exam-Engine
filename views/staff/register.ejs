@@ -1,5 +1,7 @@
 <% layout('layouts/boilerplate') %> 
 <link rel="stylesheet" href="/stylesheets/login.css">
+<link rel="stylesheet" href="/stylesheets/formStyle.css">
+
 
 <div class="container justify-content-center align-items-center mt-1">
     <div class="row">
@@ -10,17 +12,20 @@
                 <div class="card-body">
                     <h5 class="card-title">Staff Register</h5>
                     <small class="text-muted">Create A New Account</small>
-                    <form action="/staff/register" method="POST" class="mt-2 validated-form" novalidate>
+                    <form action="/staff/register" method="POST" class="mt-2 validated-form go-bottom" novalidate>
                         <div class="mb-3">
                             <input class="form-control" type="text" id="username" name="username" placeholder="Username*" required autofocus>
+                            <label for="username">Username</label>
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                         <div class="mb-3">
                             <input class="form-control" type="email" id="email" name="email" placeholder="Email*" required>
+                            <label for="email">Email</label>
                             <div class="valid-feedback">Looks good!</div>
                         </div>
                         <div class="mb-3">
                             <input class="form-control" type="password" id="password" name="password" placeholder="Password*" required>
+                            <label for="password">Password</label>
                             <div class="valid-feedback">Looks good!</div>
                         </div>
 

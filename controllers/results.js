@@ -11,6 +11,8 @@ module.exports.getResponses = async (req, res) => {
   let rightOptions = [];
   try {
     const candidatePhone = await Candidate.findById(candidate).select("phone");
+    const currCandidate = await Candidate.findById(candidate);
+
 
     const examNameQuery = await Exams.findById({ _id: exam });
     // .populate("questions");
@@ -49,7 +51,7 @@ module.exports.getResponses = async (req, res) => {
 
 
     //create the result
-    await createResult(score, candidate, candidatePhone.phone, exam, userChoices, rightChoices, questions);
+    await createResult(score, currCandidate, candidate, candidatePhone.phone, exam, userChoices, rightChoices, questions);
 
     
     // //save the result
@@ -83,8 +85,7 @@ const compare = (arr1, arr2) => {
 };
 
 
-async function createResult(score, candidate, phone, exam, userChoices, rightChoices, questions) {
-  const currCandidate = await Candidate.findById(candidate);
+async function createResult(score, currCandidate, candidate, phone, exam, userChoices, rightChoices, questions) {
   const newScore = new Result({
     score,
     candidate,
@@ -95,7 +96,9 @@ async function createResult(score, candidate, phone, exam, userChoices, rightCho
     questions,
   });
 
-  currCandidate.results.push(newScore);
+
+  await currCandidate.results.push(newScore);
+  
   await newScore.save();
   await currCandidate.save();
 

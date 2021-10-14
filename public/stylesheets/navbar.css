@@ -1,3 +1,12 @@
 .move-right{
     margin-left: auto;
 }
+
+.navbar{
+    background-color: #1a389f;
+}
+
+footer{
+    background-color: #1a389f;
+    color:whitesmoke
+}

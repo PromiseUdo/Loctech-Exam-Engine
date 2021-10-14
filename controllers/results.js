@@ -83,35 +83,47 @@ const compare = (arr1, arr2) => {
 };
 
 
+async function createResult(score, candidate, phone, exam, userChoices, rightChoices, questions) {
+  const newScore = new Result({
+    score,
+    candidate,
+    phone,
+    exam,
+    userChoices,
+    rightChoices,
+    questions,
+  });
+  await newScore.save();
+}
 
 //function to create new exam result
 
-const createResult = async (score, candidate, phone, exam, userChoices, rightChoices, questions) =>{
+// const createResult = async (score, candidate, phone, exam, userChoices, rightChoices, questions) =>{
 
-  try {
-    const newScore = await Result.create({
-      score,
-      candidate,
-      phone,
-      exam,
-      userChoices,
-      rightChoices,
-      questions,
-    });
-  } catch (e) {
-    console.log(e);
-  }
-  // const newScore = await Result.create({
-  //   score,
-  //   candidate,
-  //   phone: candidatePhone.phone,
-  //   exam,
-  //   userChoices,
-  //   rightChoices,
-  //   questions,
-  // });
+//   try {
+//     const newScore = await Result.create({
+//       score,
+//       candidate,
+//       phone,
+//       exam,
+//       userChoices,
+//       rightChoices,
+//       questions,
+//     });
+//   } catch (e) {
+//     console.log(e);
+//   }
+//   // const newScore = await Result.create({
+//   //   score,
+//   //   candidate,
+//   //   phone: candidatePhone.phone,
+//   //   exam,
+//   //   userChoices,
+//   //   rightChoices,
+//   //   questions,
+//   // });
 
-}
+// }
 
 //ends here.
 

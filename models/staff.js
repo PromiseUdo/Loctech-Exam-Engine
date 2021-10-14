@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 const Schema = mongoose.Schema;
-const Results = require('./result');
+const Results = require('./results');
 
 
 //create a staff schema

@@ -23,7 +23,7 @@ module.exports.createNewExam = async(req, res)=>{
 
         res.redirect("/staff/dashboard/exams");
     }catch(e){
-        console.log("Error:", e);
+        // console.log("Error:", e);
     }
 };
 
@@ -33,7 +33,7 @@ module.exports.updateExam = async(req, res)=>{
         const exam = await Exams.findByIdAndUpdate(id, {...req.body});
         res.redirect('/staff/dashboard/exams');
     } catch (error) {
-        console.log("Error:", e);
+        // console.log("Error:", e);
     }
 };
 
@@ -54,6 +54,6 @@ module.exports.deleteExam = async (req, res)=>{
         res.redirect('/staff/dashboard/exams');
 
     } catch (error) {
-        console.log("Error:", e);
+        // console.log("Error:", e);
     }
 };

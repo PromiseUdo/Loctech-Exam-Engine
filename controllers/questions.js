@@ -15,7 +15,7 @@ module.exports.createQuestion = async(req, res)=>{
     C = C.replace(/&nbsp;/g, '');
     D = D.replace(/&nbsp;/g, '');
 
-    console.log(name, "here is the question");
+    // console.log(name, "here is the question");
     const newQuestion = new Questions({
         name,
         options:{
@@ -48,7 +48,7 @@ module.exports.updateQuestion = async(req, res)=>{
     D = D.replace(/&nbsp;/g, '');
 
 
-    console.log(examId, questionId);
+    // console.log(examId, questionId);
     const updatedQuestion = await Questions.findByIdAndUpdate(questionId, {
         name,
         options:{

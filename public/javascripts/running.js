@@ -52,7 +52,7 @@ axios
   })
   .then((response) => {
     if (response.status >= 400) {
-      console.log(response.status);
+      // console.log(response.status);
       throw new Error("Bad response from server");
     } else {
       return response.data;
@@ -97,10 +97,10 @@ axios
         // console.log(index2);
 
         answers.splice(index2, 1, e.target.id);
-        console.log(index2, "index 2");
+        // console.log(index2, "index 2");
         turnGreen(index2);
         disableNextBtn(index2);
-        console.log(answers);
+        // console.log(answers);
         // index++; //increment the index of the questions array
 
         //   // submit button submits
@@ -116,7 +116,7 @@ axios
     });
 
     submitButton.addEventListener("click", function () {
-      console.log(answers, "Final anwsers here");
+      // console.log(answers, "Final anwsers here");
       sendAnswers(answers, questions, exam);
     });
   });
@@ -124,13 +124,13 @@ axios
 function turnGreen(index) {
   let rightIndex = index + 1;
   let navBtn = document.getElementById(rightIndex);
-  console.log(navBtn);
+  // console.log(navBtn);
   navBtn.style.backgroundColor = "green";
 }
 
 function disableNextBtn(index) {
-  console.log(index + 1);
-  console.log(navBtns.length);
+  // console.log(index + 1);
+  // console.log(navBtns.length);
   if (index + 2 <= navBtns.length) {
     let rightIndex = index + 2;
     let navBtn = document.getElementById(rightIndex);
@@ -144,10 +144,10 @@ const showQuestion = (trivia, index) => {
   answerBtns.forEach((answerBtn) => {
     answerBtn.checked = false;
     answerBtn.setAttribute("name", triviaStr.name);
-    console.log(answerBtn);
+    // console.log(answerBtn);
   });
 
-  console.log(index, "index from show question");
+  // console.log(index, "index from show question");
   let triviaOpt = answers[index];
 
   if (triviaOpt != null) {

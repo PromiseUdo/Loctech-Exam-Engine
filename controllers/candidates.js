@@ -154,7 +154,7 @@ try {
 
       }});
     }else{
-        console.log("File does not exist");
+        // console.log("File does not exist");
     }
   } catch(err) {
     console.error(err)

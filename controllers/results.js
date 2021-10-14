@@ -66,7 +66,7 @@ module.exports.getResponses = async (req, res) => {
     //send email to admin when students perform poorly on their exams
     //exclude scholarship exams to avoid spamming
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
 };
 
@@ -84,6 +84,7 @@ const compare = (arr1, arr2) => {
 
 
 async function createResult(score, candidate, phone, exam, userChoices, rightChoices, questions) {
+  const currCandidate = await Candidate.findById(candidate);
   const newScore = new Result({
     score,
     candidate,
@@ -93,11 +94,11 @@ async function createResult(score, candidate, phone, exam, userChoices, rightCho
     rightChoices,
     questions,
   });
-  const currCandidate = await Candidate.findById(candidate);
 
   currCandidate.results.push(newScore);
-  await currCandidate.save();
   await newScore.save();
+  await currCandidate.save();
+
 }
 
 //function to create new exam result

@@ -39,7 +39,7 @@ window.onload = () => {
 
     function val(){
         if(conf.value !== pass.value ){
-            console.log("Passwords don't match");
+            // console.log("Passwords don't match");
         }
     }
 

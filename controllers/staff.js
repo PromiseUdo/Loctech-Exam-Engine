@@ -65,7 +65,7 @@ module.exports.registerACandidate = async(req, res)=>{
 
         res.redirect("/staff/dashboard/candidate/new");
     }catch(e){
-        console.log("Error:", e);
+        // console.log("Error:", e);
     }
 };
 
@@ -87,7 +87,7 @@ module.exports.createNewStaff = async(req, res)=>{
                 res.redirect("/staff/dashboard/new-staff");
         }
     }catch(e){
-        console.log("Error:", e);
+        // console.log("Error:", e);
     }
 };
 

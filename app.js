@@ -144,7 +144,7 @@ app.post("/upload", upload.single("candidates"), async (req, res) => {
         });
       res.redirect("/staff/dashboard");
     } else {
-      console.log("File does not exist");
+      // console.log("File does not exist");
     }
   } catch (err) {
     console.error(err);

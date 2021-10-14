@@ -74,7 +74,7 @@ module.exports.getResponses = async (req, res) => {
   
     currCandidate.results.push(newScore);
   
-    await newScore.save();
+    // await newScore.save();
     await currCandidate.save();
 
 

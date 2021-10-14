@@ -37,7 +37,7 @@ module.exports.getResponses = async (req, res) => {
       return count;
     }
 
-    const countOfMatchedAnswers = await compare(answers, rightOptions);
+    const countOfMatchedAnswers = compare(answers, rightOptions);
 
     //compare the users answers with the right options to get the count of correct answers
     // const countOfMatchedAnswers = compare(answers, rightOptions);
@@ -56,32 +56,25 @@ module.exports.getResponses = async (req, res) => {
     // await createResult(score, currCandidate, candidate, candidatePhone.phone, exam);
 
     
-    // //save the result
-    //  const newScore = await Result.create({
-    //   score,
-    //   candidate,
-    //   phone: candidatePhone.phone,
-    //   exam,
+    //save the result
+     const newScore = await Result.create({
+      score,
+      candidate,
+      phone: candidatePhone.phone,
+      exam
+    });
+
+    // ,
     //   userChoices,
     //   rightChoices,
     //   questions,
-    // });
 
     //send email to admin when students perform poorly on their exams
     //exclude scholarship exams to avoid spamming
-
-
-    const newScore = new Result({
-      score,
-      candidate,
-      phone:candidatePhone.phone,
-      exam
-    });
-  
   
     currCandidate.results.push(newScore);
   
-    await newScore.save();
+    // await newScore.save();
     await currCandidate.save();
 
 

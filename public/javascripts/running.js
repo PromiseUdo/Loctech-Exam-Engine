@@ -169,8 +169,8 @@ const showQuestion = (trivia, index) => {
 };
 
 //function to send the answers using the fetch API
- function sendAnswers(answers, questions, exam) {
-  fetch("/candidate/exam/results", {
+ async function sendAnswers(answers, questions, exam) {
+  await fetch("/candidate/exam/results", {
     method: "POST",
     body: JSON.stringify({ answers, questions, exam }),
     headers: { "Content-Type": "application/json" },

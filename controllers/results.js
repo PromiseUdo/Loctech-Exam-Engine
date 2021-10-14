@@ -37,7 +37,7 @@ module.exports.getResponses = async (req, res) => {
     //   return count;
     // }
 
-    const countOfMatchedAnswers = compare(answers, rightOptions);
+    const countOfMatchedAnswers = await compare(answers, rightOptions);
 
     //compare the users answers with the right options to get the count of correct answers
     // const countOfMatchedAnswers = compare(answers, rightOptions);

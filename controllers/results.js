@@ -14,7 +14,7 @@ module.exports.getResponses = async (req, res) => {
     const currCandidate = await Candidate.findById(candidate);
 
 
-    const examNameQuery = await Exams.findById({ _id: exam });
+    // const examNameQuery = await Exams.findById({ _id: exam });
     // .populate("questions");
 
     for (question of questions) {
@@ -75,7 +75,7 @@ module.exports.getResponses = async (req, res) => {
 };
 
 //count the number of matching options
-const compare = (arr1, arr2) => {
+const compare = async (arr1, arr2) => {
   let count = 0;
       const max = arr1.length > arr2.length ? arr2.length : arr1.length;
       for (var i = 0; i < max; i++) {

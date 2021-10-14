@@ -93,6 +93,10 @@ async function createResult(score, candidate, phone, exam, userChoices, rightCho
     rightChoices,
     questions,
   });
+  const currCandidate = await Candidate.findById(candidate);
+
+  currCandidate.results.push(newScore);
+  await currCandidate.save();
   await newScore.save();
 }
 

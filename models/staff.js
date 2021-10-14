@@ -21,10 +21,10 @@ const userSchema = new Schema({
     role:{
         type:String  
     },
-    results:{
+    results:[{
         type:mongoose.Schema.Types.ObjectId,
         ref: 'Result'
-    }
+    }]
 });
 
 //will add on fields for username and password, makes them unique and give us additional methods to use

@@ -24,18 +24,21 @@ module.exports.getResponses = async (req, res) => {
     }
 
     //function to count the number of matching options
-    function compare(arr1, arr2) {
-      let count = 0;
-      const max = arr1.length > arr2.length ? arr2.length : arr1.length;
-      for (var i = 0; i < max; i++) {
-        if (arr1[i] == arr2[i]) {
-          count++;
-        }
-      }
-      return count;
-    }
-    //compare the users answers with the right options to get the count of correct answers
+    // function compare(arr1, arr2) {
+    //   let count = 0;
+    //   const max = arr1.length > arr2.length ? arr2.length : arr1.length;
+    //   for (var i = 0; i < max; i++) {
+    //     if (arr1[i] == arr2[i]) {
+    //       count++;
+    //     }
+    //   }
+    //   return count;
+    // }
+
     const countOfMatchedAnswers = compare(answers, rightOptions);
+
+    //compare the users answers with the right options to get the count of correct answers
+    // const countOfMatchedAnswers = compare(answers, rightOptions);
 
     //calculate the students score
     score = Math.round((countOfMatchedAnswers / countOfQuestions) * 100) + "%";
@@ -44,16 +47,21 @@ module.exports.getResponses = async (req, res) => {
     const userChoices = answers.toString();
     const rightChoices = rightOptions.toString();
 
-    //save the result
-     const newScore = await Result.create({
-      score,
-      candidate,
-      phone: candidatePhone.phone,
-      exam,
-      userChoices,
-      rightChoices,
-      questions,
-    });
+
+    //create the result
+    await createResult(score, candidate, candidatePhone.phone, exam, userChoices, rightChoices, questions);
+
+    
+    // //save the result
+    //  const newScore = await Result.create({
+    //   score,
+    //   candidate,
+    //   phone: candidatePhone.phone,
+    //   exam,
+    //   userChoices,
+    //   rightChoices,
+    //   questions,
+    // });
 
     //send email to admin when students perform poorly on their exams
     //exclude scholarship exams to avoid spamming
@@ -61,6 +69,51 @@ module.exports.getResponses = async (req, res) => {
     console.log(e);
   }
 };
+
+//count the number of matching options
+const compare = (arr1, arr2) => {
+  let count = 0;
+      const max = arr1.length > arr2.length ? arr2.length : arr1.length;
+      for (var i = 0; i < max; i++) {
+        if (arr1[i] == arr2[i]) {
+          count++;
+        }
+      }
+      return count;
+};
+
+
+
+//function to create new exam result
+
+const createResult = async (score, candidate, phone, exam, userChoices, rightChoices, questions) =>{
+
+  try {
+    const newScore = await Result.create({
+      score,
+      candidate,
+      phone,
+      exam,
+      userChoices,
+      rightChoices,
+      questions,
+    });
+  } catch (e) {
+    console.log(e);
+  }
+  // const newScore = await Result.create({
+  //   score,
+  //   candidate,
+  //   phone: candidatePhone.phone,
+  //   exam,
+  //   userChoices,
+  //   rightChoices,
+  //   questions,
+  // });
+
+}
+
+//ends here.
 
 module.exports.renderResultIndex = async (req, res) => {
   const results = await Result.find().populate("candidate").populate("exam");

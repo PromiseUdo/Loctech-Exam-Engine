@@ -18,19 +18,7 @@ const resultSchema = new mongoose.Schema({
     exam:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Exam"
-    },
-    userChoices:{
-        type:String
-    },
-    rightChoices:{
-        type:String
-    },
-    questions:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref: 'Question'
-        }
-    ]
+    }
     
 },
 {
@@ -43,3 +31,18 @@ resultSchema.virtual("date_created").get(function () {
   });
 
 module.exports = mongoose.model("Result", resultSchema);
+
+
+// ,
+//     userChoices:{
+//         type:String
+//     },
+//     rightChoices:{
+//         type:String
+//     },
+//     questions:[
+//         {
+//             type:mongoose.Schema.Types.ObjectId,
+//             ref: 'Question'
+//         }
+//     ]

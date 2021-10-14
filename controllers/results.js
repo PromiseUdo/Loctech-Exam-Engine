@@ -46,12 +46,14 @@ module.exports.getResponses = async (req, res) => {
     score = Math.round((countOfMatchedAnswers / countOfQuestions) * 100) + "%";
 
     //convert users answers from array to a string to be saved to database
-    const userChoices = answers.toString();
-    const rightChoices = rightOptions.toString();
+    // const userChoices = answers.toString();
+    // const rightChoices = rightOptions.toString();
 
 
     //create the result
-    await createResult(score, currCandidate, candidate, candidatePhone.phone, exam, userChoices, rightChoices, questions);
+    // await createResult(score, currCandidate, candidate, candidatePhone.phone, exam, userChoices, rightChoices, questions);
+
+    await createResult(score, currCandidate, candidate, candidatePhone.phone, exam);
 
     
     // //save the result
@@ -85,20 +87,17 @@ const compare = (arr1, arr2) => {
 };
 
 
-async function createResult(score, currCandidate, candidate, phone, exam, userChoices, rightChoices, questions) {
+async function createResult(score, currCandidate, candidate, phone, exam) {
   const newScore = new Result({
     score,
     candidate,
     phone,
-    exam,
-    userChoices,
-    rightChoices,
-    questions,
+    exam
   });
 
 
-  await currCandidate.results.push(newScore);
-  
+  currCandidate.results.push(newScore);
+
   await newScore.save();
   await currCandidate.save();
 

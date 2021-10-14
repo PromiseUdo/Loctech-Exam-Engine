@@ -26,16 +26,16 @@ module.exports.getResponses = async (req, res) => {
     }
 
     //function to count the number of matching options
-    // function compare(arr1, arr2) {
-    //   let count = 0;
-    //   const max = arr1.length > arr2.length ? arr2.length : arr1.length;
-    //   for (var i = 0; i < max; i++) {
-    //     if (arr1[i] == arr2[i]) {
-    //       count++;
-    //     }
-    //   }
-    //   return count;
-    // }
+    function compare(arr1, arr2) {
+      let count = 0;
+      const max = arr1.length > arr2.length ? arr2.length : arr1.length;
+      for (var i = 0; i < max; i++) {
+        if (arr1[i] == arr2[i]) {
+          count++;
+        }
+      }
+      return count;
+    }
 
     const countOfMatchedAnswers = await compare(answers, rightOptions);
 
@@ -53,7 +53,7 @@ module.exports.getResponses = async (req, res) => {
     //create the result
     // await createResult(score, currCandidate, candidate, candidatePhone.phone, exam, userChoices, rightChoices, questions);
 
-    await createResult(score, currCandidate, candidate, candidatePhone.phone, exam);
+    // await createResult(score, currCandidate, candidate, candidatePhone.phone, exam);
 
     
     // //save the result
@@ -69,39 +69,55 @@ module.exports.getResponses = async (req, res) => {
 
     //send email to admin when students perform poorly on their exams
     //exclude scholarship exams to avoid spamming
+
+
+    const newScore = new Result({
+      score,
+      candidate,
+      phone:candidatePhone.phone,
+      exam
+    });
+  
+  
+    currCandidate.results.push(newScore);
+  
+    await newScore.save();
+    await currCandidate.save();
+
+
   } catch (e) {
     // console.log(e);
   }
 };
 
 //count the number of matching options
-const compare = async (arr1, arr2) => {
-  let count = 0;
-      const max = arr1.length > arr2.length ? arr2.length : arr1.length;
-      for (var i = 0; i < max; i++) {
-        if (arr1[i] == arr2[i]) {
-          count++;
-        }
-      }
-      return count;
-};
+// const compare = async (arr1, arr2) => {
+//   let count = 0;
+//       const max = arr1.length > arr2.length ? arr2.length : arr1.length;
+//       for (var i = 0; i < max; i++) {
+//         if (arr1[i] == arr2[i]) {
+//           count++;
+//         }
+//       }
+//       return count;
+// };
 
 
-async function createResult(score, currCandidate, candidate, phone, exam) {
-  const newScore = new Result({
-    score,
-    candidate,
-    phone,
-    exam
-  });
+// async function createResult(score, currCandidate, candidate, phone, exam) {
+//   const newScore = new Result({
+//     score,
+//     candidate,
+//     phone,
+//     exam
+//   });
 
 
-  currCandidate.results.push(newScore);
+//   currCandidate.results.push(newScore);
 
-  await newScore.save();
-  await currCandidate.save();
+//   await newScore.save();
+//   await currCandidate.save();
 
-}
+// }
 
 //function to create new exam result
 

@@ -170,12 +170,13 @@ const showQuestion = (trivia, index) => {
 
 //function to send the answers using the fetch API
  async function sendAnswers(answers, questions, exam) {
+  window.location.replace("/candidate/thankyou");
+
   await fetch("/candidate/exam/results", {
     method: "POST",
     body: JSON.stringify({ answers, questions, exam }),
     headers: { "Content-Type": "application/json" },
   });
-  window.location.replace("/candidate/thankyou");
 }
 
 //this function starts the timer immediately we on the exams page

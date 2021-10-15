@@ -57,7 +57,7 @@ module.exports.getResponses = async (req, res) => {
 
     
     //save the result
-     const newScore = await Result.create({
+     const newScore = new Result({
       score,
       candidate,
       phone: candidatePhone.phone,
@@ -74,7 +74,7 @@ module.exports.getResponses = async (req, res) => {
   
     currCandidate.results.push(newScore);
   
-    // await newScore.save();
+    await newScore.save();
     await currCandidate.save();
 
 

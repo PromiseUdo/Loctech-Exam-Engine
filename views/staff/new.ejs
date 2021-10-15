@@ -110,11 +110,24 @@
                                 </div>
     
                                 <!-- Create Admin Form -->
-                                <form action="/staff/dashboard/new-staff" class="validated-form" novalidate method="POST" id="admin-create">
+                                <form action="/staff/dashboard/new-staff" class="validated-form go-bottom" novalidate method="POST" id="admin-create">
                                     <div class="modal-body p-4">
-                                       <input type="text" name="username" placeholder="Username" class="form-control my-2" required autofocus>
-                                       <input type="email" name="email" placeholder="Email" class="form-control my-2" required>
-                                       <input type="text" name="password" placeholder="Password" class="form-control my-2" required>
+                                        <div class="mb-3">
+                                            <input type="text" name="username" placeholder="Username" class="form-control my-2" required autofocus>
+                                            <label for="username">Username</label>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <input type="email" name="email" placeholder="Email" class="form-control my-2" required>
+                                            <label for="email">Email</label>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <input type="text" name="password" placeholder="Password" class="form-control my-2" required>
+                                            <label for="password">Password</label>
+                                        </div>
+                                       
+                                                                         
                                        <input type="hidden" name="role" value="admin" placeholder="Password" class="form-control my-2">                                  
                                     </div>
                                     <div class="modal-footer">

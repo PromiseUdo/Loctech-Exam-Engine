@@ -1,2 +1,4 @@
 node_modules/
 .tmp.drivedownload/
+.env
+.env.local
